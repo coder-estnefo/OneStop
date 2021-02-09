@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'view-properties',
     loadChildren: () => import('./pages/owner/property/view-properties/view-properties.module').then( m => m.ViewPropertiesPageModule)
   },
+  {
+    path: 'edit-property',
+    loadChildren: () => import('./pages/owner/property/edit-property/edit-property.module').then( m => m.EditPropertyPageModule)
+  },
 ];
 
 @NgModule({

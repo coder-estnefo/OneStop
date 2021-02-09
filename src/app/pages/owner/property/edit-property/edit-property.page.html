@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Property</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="property">
+    <h2>
+      <span class="details-nav" (click)="details()"> Details </span>
+      >
+      <span class="images-nav" (click)="images()"> Images </span>
+    </h2>
+
+    <form>
+      <div *ngIf="showDetails">
+        <div class="form-control">
+          <label class="form-label">Province</label>
+          <input type="text" placeholder="" />
+        </div>
+
+        <div class="form-control">
+          <label class="form-label">Address</label>
+          <input type="text" placeholder="" />
+        </div>
+
+        <div class="form-control">
+          <label class="form-label">Price</label>
+          <input type="text" placeholder="" />
+        </div>
+
+        <div class="form-control">
+          <label class="form-label">Bedrooms(s)</label>
+          <input type="number" placeholder="" />
+        </div>
+
+        <div class="form-control">
+          <label class="form-label">Bathroom(s)</label>
+          <input type="number" placeholder="" />
+        </div>
+
+        <div class="form-control">
+          <label class="form-label">Garage(s)</label>
+          <input type="number" placeholder="" />
+        </div>
+
+        <div class="form-control">
+          <label class="form-label">Description</label>
+          <textarea rows="4"> </textarea>
+        </div>
+
+        <div class="form-control">
+          <input type="button" (click)="continue()" value="Update" />
+        </div>
+      </div>
+
+      <div *ngIf="showImages">
+        <ion-card class="prop-images">
+          <div class="prop-img">
+            <ion-img
+              class="img"
+              src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt="property image"
+            ></ion-img>
+          </div>
+          <div class="prop-controls">
+            <button type="button">
+              Delete<ion-icon name="trash"></ion-icon>
+            </button>
+          </div>
+        </ion-card>
+        <div class="form-control">
+          <div class="button-wrap">
+            <label class="form-label" for="upload">Image</label>
+            <input id="upload" type="file" accept="image/*" />
+          </div>
+        </div>
+
+        <div class="form-control">
+          <input type="submit" value="Upload" />
+        </div>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>
