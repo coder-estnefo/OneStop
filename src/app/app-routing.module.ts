@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'edit-property',
     loadChildren: () => import('./pages/owner/property/edit-property/edit-property.module').then( m => m.EditPropertyPageModule)
   },
+  {
+    path: 'view-appointments',
+    loadChildren: () => import('./pages/owner/property/view-appointments/view-appointments.module').then( m => m.ViewAppointmentsPageModule)
+  },
 ];
 
 @NgModule({
