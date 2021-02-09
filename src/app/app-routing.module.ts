@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/owner/property/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
 ];
 
 @NgModule({

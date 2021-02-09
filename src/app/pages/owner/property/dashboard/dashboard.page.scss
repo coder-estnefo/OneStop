@@ -1,0 +1,49 @@
+$blue: #7ab7e2;
+$red: #ff2929;
+$white: #ffffff;
+
+.blue {
+  background-color: $blue;
+}
+
+.red {
+  background-color: $red;
+}
+
+.card {
+  text-transform: capitalize;
+  padding: 10px;
+  color: $white;
+}
+
+.card-label {
+  text-align: center;
+  font-weight: 900;
+}
+
+.card-day {
+  text-align: center;
+}
+
+.badge {
+  margin: 2px auto;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
+
+.badge-count {
+  padding: 28px 0;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.add {
+  float: left;
+  font-weight: 600;
+}
+.view {
+  float: right;
+  font-weight: 600;
+}
