@@ -1,4 +1,5 @@
 $blue: #7ab7e2;
+$ligt-blue: #95d3ff;
 $white: #ffffff;
 
 .property {
@@ -90,4 +91,17 @@ input[type="file"]::file-selector-button {
   color: $white;
   border-radius: 17px 0 0 17px;
   transition: 1s;
+}
+
+input[type="button"]:disabled {
+  background-color: $ligt-blue;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border: 2px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border: 2px solid #a94442; /* red */
 }
