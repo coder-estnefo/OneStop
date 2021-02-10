@@ -102,6 +102,6 @@ input[type="button"]:disabled {
   border: 2px solid #42a948; /* green */
 }
 
-.ng-invalid:not(form) {
+.ng-invalid:not(form):not(.prop-images) {
   border: 2px solid #a94442; /* red */
 }
