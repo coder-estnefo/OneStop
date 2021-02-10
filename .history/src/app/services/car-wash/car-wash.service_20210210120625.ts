@@ -46,9 +46,10 @@ export class CarWashService {
     }
 
     // Get all car washes
-    getCarwashes(){
-        // return this.firestore.collection('Carwashes').snapshotChanges();
-    }
+    getCarwashes(){// Get recommended car washes
+        getRecommendedCarWashes(){
+            // return this.firestore.collection('carwashes', ref => ref.where('popular', '==', true)).snapshotChanges();
+        }
 
     // Get recommended car washes
     getRecommendedCarWashes(){
