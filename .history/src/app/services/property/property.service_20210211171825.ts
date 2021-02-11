@@ -38,17 +38,17 @@ export class PropertyService {
 	// Add property
 	addProperty(property){
 		return this.firestore.collection('Properties').add({
-			name: '',
-			location: [property.province, property.address],
-			image: ['', ''],
-		 	price: property.price,
-			garages: property.garages,
-			bedrooms: property.bedrooms,
-			bathrooms: property.bathrooms,
-			description: property.description,
-			availability_status: '',
-			popular: true
-		});
+			// name: '',
+			// location: [property.province, property.address],
+			// image: ['', ''],
+		 	// price: property.price,
+			// garages: property.garages,
+			// bedrooms: property.bedrooms,
+			// bathrooms: property.bathrooms,
+			// description: property.description,
+			// availability_status: '',
+			// popular: true
+		// });
 	}
 
 	// Add property Owner

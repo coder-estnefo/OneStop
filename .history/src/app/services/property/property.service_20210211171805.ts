@@ -38,7 +38,7 @@ export class PropertyService {
 	// Add property
 	addProperty(property){
 		return this.firestore.collection('Properties').add({
-			name: '',
+			// name: '',
 			location: [property.province, property.address],
 			image: ['', ''],
 		 	price: property.price,
@@ -46,7 +46,7 @@ export class PropertyService {
 			bedrooms: property.bedrooms,
 			bathrooms: property.bathrooms,
 			description: property.description,
-			availability_status: '',
+			// availability_status: '',
 			popular: true
 		});
 	}

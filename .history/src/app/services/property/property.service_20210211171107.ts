@@ -38,15 +38,15 @@ export class PropertyService {
 	// Add property
 	addProperty(property){
 		return this.firestore.collection('Properties').add({
-			name: '',
-			location: [property.province, property.address],
+			// name: '',
+			location: [''],
+			province: propert
 			image: ['', ''],
-		 	price: property.price,
-			garages: property.garages,
-			bedrooms: property.bedrooms,
-			bathrooms: property.bathrooms,
-			description: property.description,
-			availability_status: '',
+		 	price: 0.0,
+			garages: 0,
+			bedrooms: 0,
+			description: '',
+			// availability_status: '',
 			popular: true
 		});
 	}
