@@ -130,7 +130,7 @@
             type="submit"
             value="Upload"
             (click)="upload()"
-            [disabled]="propertyForm.invalid"
+            [disabled]="propertyForm.invalid || isUpload"
           />
         </div>
       </div>

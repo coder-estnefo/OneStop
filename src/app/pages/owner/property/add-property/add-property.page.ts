@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
+import { PropertyService } from 'src/app/services/property/property.service';
 
 @Component({
   selector: 'app-add-property',
@@ -17,9 +19,13 @@ export class AddPropertyPage implements OnInit {
   imagesList = [];
   imagesUrls = [];
 
+  isUpload = false;
+
   constructor(
     private formBuilder: FormBuilder,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private propertyService: PropertyService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -64,12 +70,47 @@ export class AddPropertyPage implements OnInit {
   }
 
   upload() {
-    console.log(this.propertyForm);
+    this.isUpload = true;
 
-    console.log(this.imagesUrls);
+    const province = this.propertyForm.value.province;
+    const address = this.propertyForm.value.address;
+    const price = this.propertyForm.value.price;
+    const bedrooms = this.propertyForm.value.bedrooms;
+    const bathrooms = this.propertyForm.value.bathrooms;
+    const garages = this.propertyForm.value.garages;
+    const description = this.propertyForm.value.description;
+    const images = this.imagesUrls;
+
+    const details = {
+      ownerID: 678290, // needs to get this from auth(waiting for registration)
+      province,
+      address,
+      price,
+      bedrooms,
+      bathrooms,
+      garages,
+      description,
+      images,
+    };
+
+    this.propertyService
+      .addProperty(details)
+      .then(() => {
+        this.isUpload = false;
+      })
+      .catch(() => {
+        this.isUpload = false;
+      });
+
+    this.propertyForm.reset();
+    this.imagesList = [];
+    this.imagesUrls = [];
+    this.resetPropertyImages();
+    this.details();
+    this.router.navigate(['/dashboard']);
   }
 
-  reset() {
+  resetPropertyImages() {
     this.propertyImages.clear();
   }
 
