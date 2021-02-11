@@ -1,0 +1,86 @@
+.wepper {
+  width: 100vw;
+  height: 100vh;
+//   background-color: cornflowerblue;
+  // background-color: tomato;
+
+  .upper {
+    background-color: cornflowerblue;
+    // background-color: tomato;
+
+    width: 100vw;
+    height: 25vh;
+  }
+
+  .log_detail {
+    background-color: rgb(245, 245, 245,0.5);
+    width: 100vw;
+    height: 75vh;
+    border-top-left-radius: 100px;
+    position: relative;
+    border-top: 1px solid cornflowerblue;
+
+    .infor {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+
+      .input {
+        width: 100%;
+
+      }
+
+      .register {
+        text-align: right;
+        color: gray;
+      }
+
+      .btn {
+        padding-top: 5%;
+        color:cornflowerblue;
+        width: 100%;
+        margin: auto;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.test {
+  background-color: white;
+  border-radius: 4px;
+  // border: 1px solid gray;
+  box-sizing: border-box;
+  outline: none;
+  margin: 8px 0;
+  padding: 8px;
+  padding-left: 45px;
+
+  position: relative;
+}
+
+#input {
+    border-bottom: cornflowerblue 1px solid;
+}
+
+#input:hover {
+
+  border-bottom: cornflowerblue 1px solid;
+}
+
+#icon {
+  font-size: 25px;
+  color: black;
+  position: absolute;
+
+  top: 50%;
+  left: 5%;
+  transform: translate(-5%, -50%);
+}
+
+.test:focus {
+  border-color: yellowgreen;
+  box-shadow: 0 0 8px 0 yellowgreen;
+}

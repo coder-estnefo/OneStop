@@ -31,6 +31,12 @@ const routes: Routes = [
 		path: 'view-appointments',
 		loadChildren: () => import('./pages/owner/property/view-appointments/view-appointments.module').then( m => m.ViewAppointmentsPageModule)
 	},
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+];
+
 ];
 
 @NgModule({
