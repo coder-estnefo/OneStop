@@ -8,22 +8,26 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="property">
-    <ion-img
-      class="property-img"
-      src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-      alt="property image"
-    ></ion-img>
+  <ion-card class="property" *ngFor="let property of properties">
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let image of property.images">
+        <ion-img
+          class="property-img"
+          [src]="image"
+          [alt]="property.description"
+        ></ion-img>
+      </ion-slide>
+    </ion-slides>
+
     <div class="icons-line">
-      <ion-text>1</ion-text>
+      <ion-text>{{property.bedrooms}}</ion-text>
       <ion-icon name="bed"></ion-icon>
-      <ion-text>1</ion-text>
+      <ion-text>{{property.garages}}</ion-text>
       <ion-icon name="car"></ion-icon>
     </div>
-    <ion-label class="address">Address</ion-label><br />
+    <ion-label class="address">{{property.address}}</ion-label><br />
     <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-      consequatur! ...
+      {{property.description}}
       <span>show more</span>
     </p>
 
