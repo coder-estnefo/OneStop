@@ -1,0 +1,28 @@
+$blue: #7ab7e2;
+$white: #ffffff;
+
+.appointment-card {
+  padding: 10px 20px;
+  font-size: 19px;
+}
+
+.address {
+  font-weight: 600;
+  color: #000000;
+}
+
+.date {
+  font-weight: 500;
+  color: #000000;
+}
+
+.btn {
+  width: 100%;
+  height: 40px;
+  border-radius: 17px;
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 10px;
+  background-color: $blue;
+  color: $white;
+}
