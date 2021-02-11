@@ -7,13 +7,13 @@
 <ion-content>
   <ion-card class="property">
     <h2>
-      <span class="details-nav" (click)="details()"> Details </span>
+      <span class="details-nav"> Details </span>
       &gt;
-      <span class="images-nav" (click)="images()"> Images </span>
+      <span class="images-nav"> Images </span>
     </h2>
 
     <form [formGroup]="propertyForm">
-      <div *ngIf="showDetails">
+      <div [hidden]="hideDetails">
         <div class="form-control">
           <label class="form-label">Province</label>
           <input
@@ -78,14 +78,26 @@
           <label class="form-label">Description</label>
           <textarea rows="4" formControlName="description" required></textarea>
         </div>
-
         <div class="form-control">
-          <input type="button" (click)="continue()" value="Continue" />
+          <input
+            type="button"
+            (click)="continue()"
+            value="Continue"
+            [disabled]=" 
+              propertyForm.controls.province.invalid || 
+              propertyForm.controls.address.invalid ||  
+              propertyForm.controls.price.invalid || 
+              propertyForm.controls.bedrooms.invalid || 
+              propertyForm.controls.bathrooms.invalid ||
+              propertyForm.controls.garages.invalid || 
+              propertyForm.controls.description.invalid 
+            "
+          />
         </div>
       </div>
 
       <div
-        *ngIf="showImages"
+        [hidden]="hideImages"
         formArrayName="propertyImages"
         class="prop-images"
       >
@@ -99,6 +111,7 @@
             type="file"
             accept="image/*"
             [formControlName]="i"
+            (change)="uploadFile($event)"
             required
           />
         </div>
