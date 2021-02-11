@@ -1,5 +1,5 @@
 $blue: #7ab7e2;
-$ligt-blue: #95d3ff;
+$ligt-blue: #a4ceeb;
 $white: #ffffff;
 
 .property {
@@ -93,7 +93,8 @@ input[type="file"]::file-selector-button {
   transition: 1s;
 }
 
-input[type="button"]:disabled {
+input[type="button"]:disabled,
+[type="submit"]:disabled {
   background-color: $ligt-blue;
 }
 
