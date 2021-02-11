@@ -67,4 +67,11 @@ export class PropertyService {
     // 	name: '',
     // });
   }
+
+  // Get Owner Properties
+  getOwnerProperties(ownerID) {
+    return this.firestore
+      .collection('Properties', (ref) => ref.where('ownerID', '==', ownerID))
+      .snapshotChanges();
+  }
 }
