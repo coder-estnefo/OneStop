@@ -13,7 +13,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'dashboard',
+    path: 'property-dashboard',
     loadChildren: () =>
       import('./pages/owner/property/dashboard/dashboard.module').then(
         (m) => m.DashboardPageModule
@@ -47,10 +47,29 @@ const routes: Routes = [
         './pages/owner/property/view-appointments/view-appointments.module'
       ).then((m) => m.ViewAppointmentsPageModule),
   },
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('./pages/login/login.module').then((m) => m.LoginPageModule),
+  // },
   {
     path: 'login',
     loadChildren: () =>
-      import('./pages/login/login.module').then((m) => m.LoginPageModule),
+      import('./pages/owner/login/login.module').then((m) => m.LoginPageModule),
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./pages/owner/register/register.module').then(
+        (m) => m.RegisterPageModule
+      ),
+  },
+  {
+    path: 'navigation',
+    loadChildren: () =>
+      import('./pages/owner/navigation/navigation.module').then(
+        (m) => m.NavigationPageModule
+      ),
   },
 ];
 
