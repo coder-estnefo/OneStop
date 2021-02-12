@@ -1,0 +1,39 @@
+$blue: #7ab7e2;
+$orange: #ffaf1d;
+$red: #ff2929;
+$white: #ffffff;
+
+.main-card {
+  padding: 20px;
+}
+
+.main-card h2 {
+  font-weight: 600;
+}
+
+.property-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  background-color: $blue;
+  color: $white;
+}
+
+.car-wash-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  background-color: $orange;
+  color: $white;
+}
+
+.events-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  background-color: $red;
+  color: $white;
+}
