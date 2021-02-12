@@ -1,0 +1,64 @@
+$orange: #ffaf1d;
+$light-orange: #fdc55d;
+$white: #ffffff;
+$black: #000000;
+
+.register-card {
+  height: 100%;
+  padding: 10px 20px;
+  color: $black;
+}
+
+.register-card h2 {
+  font-weight: 600;
+}
+
+.form-control {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.input-label {
+  font-weight: 600;
+  display: block;
+}
+
+input[type="text"],
+[type="email"],
+[type="password"] {
+  width: 100%;
+  height: 40px;
+  border-radius: 17px;
+  border: 1px solid gray;
+  padding-left: 20px;
+  font-weight: 500;
+}
+
+button[type="submit"] {
+  width: 100%;
+  height: 40px;
+  border-radius: 17px;
+  border: 0;
+  font-size: 18px;
+  color: $white;
+  background-color: $orange;
+}
+
+button[type="submit"]:disabled {
+  background-color: $light-orange;
+}
+
+.register-card p {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border: 2px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border: 2px solid #a94442; /* red */
+}

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="register-card">
+    <h2>Owner Registration</h2>
+    <form [formGroup]="registerForm">
+      <div class="form-control">
+        <ion-label for="name" class="input-label">Name</ion-label>
+        <input
+          type="text"
+          id="name"
+          placeholder=""
+          formControlName="name"
+          required
+        />
+      </div>
+      <div class="form-control">
+        <ion-label for="surname" class="input-label">Surname</ion-label>
+        <input
+          type="text"
+          id="surname"
+          placeholder=""
+          formControlName="surname"
+          required
+        />
+      </div>
+      <div class="form-control">
+        <ion-label for="email" class="input-label">Email</ion-label>
+        <input
+          type="email"
+          id="email"
+          placeholder=""
+          formControlName="email"
+          required
+        />
+      </div>
+      <div class="form-control">
+        <ion-label for="password" class="input-label">Password</ion-label>
+        <input
+          type="password"
+          id="password"
+          placeholder=""
+          formControlName="password"
+          required
+        />
+      </div>
+      <div class="form-control">
+        <button type="submit" [disabled]="registerForm.invalid">
+          Register
+        </button>
+      </div>
+    </form>
+    <p>Registered? <a routerLink="/login">login</a></p>
+  </ion-card>
+</ion-content>
