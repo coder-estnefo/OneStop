@@ -49,8 +49,15 @@
         />
       </div>
       <div class="form-control">
-        <button type="submit" [disabled]="registerForm.invalid">
-          Register
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid || isLoading"
+          (click)="register()"
+        >
+          <span [hidden]="isLoading"> Register </span>
+          <span [hidden]="!isLoading">
+            <ion-spinner name="bubbles"></ion-spinner>
+          </span>
         </button>
       </div>
     </form>
