@@ -3,6 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
+import { LoginService } from 'src/app/services/login/login.service';
 import { PropertyService } from 'src/app/services/property/property.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class AddPropertyPage implements OnInit {
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
     private propertyService: PropertyService,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -45,6 +47,8 @@ export class AddPropertyPage implements OnInit {
       ],
       propertyImages: this.formBuilder.array([this.formBuilder.control('')]),
     });
+
+    this.loginService.getAuthState();
   }
 
   continue() {
@@ -71,18 +75,22 @@ export class AddPropertyPage implements OnInit {
 
   upload() {
     this.isUpload = true;
+    const ownerID = this.loginService.getUserID();
 
-    const province = this.propertyForm.value.province;
-    const address = this.propertyForm.value.address;
-    const price = this.propertyForm.value.price;
-    const bedrooms = this.propertyForm.value.bedrooms;
-    const bathrooms = this.propertyForm.value.bathrooms;
-    const garages = this.propertyForm.value.garages;
-    const description = this.propertyForm.value.description;
     const images = this.imagesUrls;
 
+    const {
+      province,
+      address,
+      price,
+      bedrooms,
+      bathrooms,
+      garages,
+      description,
+    } = this.propertyForm.value;
+
     const details = {
-      ownerID: 678290, // needs to get this from auth(waiting for registration)
+      ownerID,
       province,
       address,
       price,
@@ -107,7 +115,7 @@ export class AddPropertyPage implements OnInit {
     this.imagesUrls = [];
     this.resetPropertyImages();
     this.details();
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/property-dashboard']);
   }
 
   resetPropertyImages() {
