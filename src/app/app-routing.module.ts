@@ -47,11 +47,8 @@ const routes: Routes = [
         './pages/owner/property/view-appointments/view-appointments.module'
       ).then((m) => m.ViewAppointmentsPageModule),
   },
-  // {
-  //   path: 'login',
-  //   loadChildren: () =>
-  //     import('./pages/login/login.module').then((m) => m.LoginPageModule),
-  // },
+
+
   {
     path: 'login',
     loadChildren: () =>
@@ -60,9 +57,7 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () =>
-      import('./pages/owner/register/register.module').then(
-        (m) => m.RegisterPageModule
-      ),
+      import('./pages/owner/register/register.module').then((m) => m.RegisterPageModule),
   },
   {
     path: 'navigation',
@@ -71,6 +66,18 @@ const routes: Routes = [
         (m) => m.NavigationPageModule
       ),
   },
+
+  /*{
+    path: 'login',
+    loadChildren: () =>
+    import('./pages/login/login.module').then((m) => m.LoginPageModule),
+  },
+ {
+   path: 'registration',
+   loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
+ },
+*/
+
 ];
 
 @NgModule({
@@ -79,4 +86,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
