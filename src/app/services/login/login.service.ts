@@ -19,7 +19,7 @@ export class LoginService {
       .then((results) => {
         this.getAuthState();
         let userID = results.user.uid;
-        return this.firestore.collection('User').add({
+        return this.firestore.collection('Owner').add({
           userID,
           name,
           surname,
