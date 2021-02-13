@@ -58,6 +58,7 @@ export class PropertyService {
       images,
       availability_status: '',
       popular: true,
+      propertyID: new Date().getTime().toString() + ownerID.substring(5, 10),
     });
   }
 
