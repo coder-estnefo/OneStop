@@ -29,7 +29,16 @@
         />
       </div>
       <div class="form-control">
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading"
+          (click)="login()"
+        >
+          <span [hidden]="isLoading">Login</span>
+          <span [hidden]="!isLoading"
+            ><ion-spinner name="bubbles"></ion-spinner
+          ></span>
+        </button>
       </div>
     </form>
     <p>Not registered? <a routerLink="/register">register</a></p>
