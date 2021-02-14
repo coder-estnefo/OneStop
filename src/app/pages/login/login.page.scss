@@ -1,19 +1,17 @@
 .wepper {
   width: 100vw;
   height: 100vh;
-//   background-color: cornflowerblue;
-  // background-color: tomato;
 
+  //   background-color: cornflowerblue;
   .upper {
     background-color: cornflowerblue;
     // background-color: tomato;
-
     width: 100vw;
     height: 25vh;
   }
 
   .log_detail {
-    background-color: rgb(245, 245, 245,0.5);
+    background-color: rgb(245, 245, 245, 0.5);
     width: 100vw;
     height: 75vh;
     border-top-left-radius: 100px;
@@ -29,7 +27,7 @@
 
       .input {
         width: 100%;
-
+       
       }
 
       .register {
@@ -37,50 +35,54 @@
         color: gray;
       }
 
+      .register a {
+        color: cornflowerblue;
+      }
+
       .btn {
         padding-top: 5%;
-        color:cornflowerblue;
-        width: 100%;
-        margin: auto;
-        text-align: center;
+        color: cornflowerblue;
+
+      .btn {
+          padding-top: 5%;
+          width: 100%;
+          margin: auto;
+          text-align: center;
+        }
       }
     }
   }
-}
 
-.test {
-  background-color: white;
-  border-radius: 4px;
-  // border: 1px solid gray;
-  box-sizing: border-box;
-  outline: none;
-  margin: 8px 0;
-  padding: 8px;
-  padding-left: 45px;
+  .field {
+    background-color: white;
+    border-radius: 4px;
+    // border: 1px solid gray;
+    box-sizing: border-box;
+    outline: none;
+    margin: 8px 0;
+    padding: 8px;
+    padding-left: 45px;
 
-  position: relative;
-}
+    position: relative;
+  }
 
-#input {
+  #input {
+
     border-bottom: cornflowerblue 1px solid;
-}
+  }
 
-#input:hover {
+  #input:hover {
 
-  border-bottom: cornflowerblue 1px solid;
-}
+    border-bottom: cornflowerblue 1px solid;
+  }
 
-#icon {
-  font-size: 25px;
-  color: black;
-  position: absolute;
+  #icon {
+    font-size: 25px;
+    color: black;
+    position: absolute;
 
-  top: 50%;
-  left: 5%;
-  transform: translate(-5%, -50%);
-}
-
-.test:focus {
-  border-color: yellowgreen;
-  box-shadow: 0 0 8px 0 yellowgreen;
+    top: 50%;
+    left: 5%;
+    transform: translate(-5%, -50%);
+  }
 }
