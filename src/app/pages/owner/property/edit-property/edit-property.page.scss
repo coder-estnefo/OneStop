@@ -1,4 +1,5 @@
 $blue: #7ab7e2;
+$ligt-blue: #a4ceeb;
 $white: #ffffff;
 
 .property {
@@ -92,7 +93,7 @@ input[type="file"]::file-selector-button {
   transition: 1s;
 }
 
-.prop-images {
+.view-prop-images {
   margin: 10px 0 20px;
   display: flex;
   height: 75px;
@@ -115,4 +116,18 @@ input[type="file"]::file-selector-button {
   flex-basis: 70%;
   margin: auto;
   padding: 20px;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border: 2px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form):not(.prop-images) {
+  border: 2px solid #a94442; /* red */
+}
+
+input[type="button"]:disabled,
+[type="submit"]:disabled {
+  background-color: $ligt-blue;
 }
