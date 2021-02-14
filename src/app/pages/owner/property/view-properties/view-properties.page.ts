@@ -53,8 +53,10 @@ export class ViewPropertiesPage implements OnInit {
     });
   }
 
-  editProperty(property) {
-    this.router.navigate(['/edit-property'], { queryParams: { ...property } });
+  editProperty(docID) {
+    this.router.navigate(['/edit-property'], {
+      queryParams: { docID: docID },
+    });
   }
 
   logout() {

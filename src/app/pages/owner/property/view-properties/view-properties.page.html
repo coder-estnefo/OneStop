@@ -15,7 +15,7 @@
 <ion-content>
   <ion-card class="property" *ngFor="let property of properties">
     <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide *ngFor="let image of property.images">
+      <ion-slide *ngFor="let image of property.images" style="height: 200px">
         <ion-img
           class="property-img"
           [src]="image"
@@ -25,18 +25,26 @@
     </ion-slides>
 
     <div class="icons-line">
-      <ion-text>{{property.bedrooms}}</ion-text>
+      <ion-text style="font-size: 22px">{{property.bedrooms}}</ion-text>
       <ion-icon name="bed"></ion-icon>
-      <ion-text>{{property.garages}}</ion-text>
+      <ion-text style="font-size: 22px">{{property.bathrooms}}</ion-text>
+      <ion-icon name="water-outline"></ion-icon>
+      <ion-text style="font-size: 22px">{{property.garages}}</ion-text>
       <ion-icon name="car"></ion-icon>
     </div>
     <ion-label class="address">{{property.address}}</ion-label><br />
+    <ion-label>{{property.province}}</ion-label><br />
+    <ion-label>R{{property.price}}</ion-label><br />
     <p>
       {{property.description}}
-      <span>show more</span>
+      <!-- <span>show more</span> -->
     </p>
 
-    <button type="button" class="edit-btn" (click)="editProperty(property)">
+    <button
+      type="button"
+      class="edit-btn"
+      (click)="editProperty(property.docID)"
+    >
       edit <ion-icon name="create"></ion-icon>
     </button>
     <button type="button" class="delete-btn">
