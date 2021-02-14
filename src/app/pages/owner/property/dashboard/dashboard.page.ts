@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
 import { PropertyService } from 'src/app/services/property/property.service';
 
 @Component({
@@ -12,7 +14,9 @@ export class DashboardPage implements OnInit {
 
   constructor(
     private auth: AngularFireAuth,
-    private propertyService: PropertyService
+    private propertyService: PropertyService,
+    private router: Router,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -23,6 +27,12 @@ export class DashboardPage implements OnInit {
         .subscribe((properties) => {
           this.propertiesCount = properties.length;
         });
+    });
+  }
+
+  logout() {
+    this.loginService.logout().then(() => {
+      this.router.navigate(['/login']);
     });
   }
 }

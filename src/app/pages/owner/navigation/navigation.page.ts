@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +14,8 @@ export class NavigationPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public alertController: AlertController,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -42,5 +44,11 @@ export class NavigationPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  logout() {
+    this.loginService.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 }

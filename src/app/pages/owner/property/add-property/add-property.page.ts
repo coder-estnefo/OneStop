@@ -144,4 +144,10 @@ export class AddPropertyPage implements OnInit {
       )
       .subscribe();
   }
+
+  logout() {
+    this.loginService.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
+  }
 }

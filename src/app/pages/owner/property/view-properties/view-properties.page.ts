@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
 import { PropertyService } from 'src/app/services/property/property.service';
 
 export interface property {
@@ -13,6 +16,8 @@ export interface property {
   images: string[];
   availability_status: string;
   popular: boolean;
+  propertyID: string;
+  docID: string;
 }
 
 @Component({
@@ -28,16 +33,33 @@ export class ViewPropertiesPage implements OnInit {
     speed: 400,
   };
 
-  constructor(private propertyService: PropertyService) {}
+  constructor(
+    private propertyService: PropertyService,
+    private auth: AngularFireAuth,
+    private router: Router,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit() {
-    this.propertyService.getOwnerProperties(678290).subscribe((array) => {
-      this.properties = array.map((property) => {
-        return ({
-          id: property.payload.doc.id,
-          ...(property.payload.doc.data() as Object),
-        } as unknown) as property;
+    this.auth.authState.subscribe((user) => {
+      this.propertyService.getOwnerProperties(user.uid).subscribe((array) => {
+        this.properties = array.map((property) => {
+          return ({
+            docID: property.payload.doc.id,
+            ...(property.payload.doc.data() as Object),
+          } as unknown) as property;
+        });
       });
+    });
+  }
+
+  editProperty(property) {
+    this.router.navigate(['/edit-property'], { queryParams: { ...property } });
+  }
+
+  logout() {
+    this.loginService.logout().then(() => {
+      this.router.navigate(['/login']);
     });
   }
 }

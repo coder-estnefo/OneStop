@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/property-dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title>View-Properties</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -31,7 +36,7 @@
       <span>show more</span>
     </p>
 
-    <button type="button" class="edit-btn" routerLink="/edit-property">
+    <button type="button" class="edit-btn" (click)="editProperty(property)">
       edit <ion-icon name="create"></ion-icon>
     </button>
     <button type="button" class="delete-btn">
