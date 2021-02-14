@@ -14,7 +14,10 @@ export class PropertyService {
 
   // Get property by Id
   getPropertyById(propertyId: string) {
-    // return this.firestore.collection('Properties').doc(propertyId).snapshotChanges();
+    return this.firestore
+      .collection('Properties')
+      .doc(propertyId)
+      .snapshotChanges();
   }
 
   // Get property owners
@@ -74,5 +77,39 @@ export class PropertyService {
     return this.firestore
       .collection('Properties', (ref) => ref.where('ownerID', '==', ownerID))
       .snapshotChanges();
+  }
+
+  // Update property
+  updateProperty(property) {
+    const {
+      docID,
+      ownerID,
+      province,
+      address,
+      price,
+      bedrooms,
+      bathrooms,
+      garages,
+      description,
+      images,
+      availability_status,
+      popular,
+      propertyID,
+    } = property;
+
+    return this.firestore.collection('Properties').doc(docID).set({
+      ownerID,
+      province,
+      address,
+      price,
+      bedrooms,
+      bathrooms,
+      garages,
+      description,
+      images,
+      availability_status,
+      popular,
+      propertyID,
+    });
   }
 }
