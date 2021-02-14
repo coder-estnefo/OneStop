@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { redirectUnauthorizedTo, canActivate } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
 const routes: Routes = [
   {
@@ -9,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'navigation',
     pathMatch: 'full',
   },
   {
@@ -18,6 +21,7 @@ const routes: Routes = [
       import('./pages/owner/property/dashboard/dashboard.module').then(
         (m) => m.DashboardPageModule
       ),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'add-property',
@@ -25,6 +29,7 @@ const routes: Routes = [
       import('./pages/owner/property/add-property/add-property.module').then(
         (m) => m.AddPropertyPageModule
       ),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'view-properties',
@@ -32,6 +37,7 @@ const routes: Routes = [
       import(
         './pages/owner/property/view-properties/view-properties.module'
       ).then((m) => m.ViewPropertiesPageModule),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'edit-property',
@@ -39,6 +45,7 @@ const routes: Routes = [
       import('./pages/owner/property/edit-property/edit-property.module').then(
         (m) => m.EditPropertyPageModule
       ),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'view-appointments',
@@ -46,6 +53,7 @@ const routes: Routes = [
       import(
         './pages/owner/property/view-appointments/view-appointments.module'
       ).then((m) => m.ViewAppointmentsPageModule),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   // {
   //   path: 'login',
@@ -70,6 +78,7 @@ const routes: Routes = [
       import('./pages/owner/navigation/navigation.module').then(
         (m) => m.NavigationPageModule
       ),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
 ];
 
