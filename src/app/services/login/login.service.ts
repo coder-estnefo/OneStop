@@ -44,4 +44,8 @@ export class LoginService {
   getUserID() {
     return this.state.uid;
   }
+
+  logout() {
+    return this.fireAuth.signOut();
+  }
 }
