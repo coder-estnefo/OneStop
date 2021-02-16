@@ -15,7 +15,7 @@
 <ion-content>
   <ion-card class="property" *ngFor="let property of properties">
     <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide *ngFor="let image of property.images" style="height: 200px">
+      <ion-slide *ngFor="let image of property.images" class="img-slide">
         <ion-img
           class="property-img"
           [src]="image"
