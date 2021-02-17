@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PropertyService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private storage: AngularFireStorage
+  ) {}
 
   // Get properties
   getProperties() {
@@ -111,5 +115,18 @@ export class PropertyService {
       popular,
       propertyID,
     });
+  }
+
+  //delete property
+  deleteProperty(docID, images) {
+    return this.firestore
+      .collection('Properties')
+      .doc(docID)
+      .delete()
+      .then(() => {
+        images.map((img) => {
+          this.storage.refFromURL(img).delete();
+        });
+      });
   }
 }
