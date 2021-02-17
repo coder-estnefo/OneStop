@@ -42,3 +42,19 @@ $white: #ffffff;
   color: $white;
   background-color: $blue;
 }
+
+.img-slide {
+  height: 200px;
+  width: 100%;
+  background-color: #d8d8d8;
+  animation: imgAnim 1s infinite;
+}
+
+@keyframes imgAnim {
+  from {
+    background-color: #c0c0c0;
+  }
+  to {
+    background-color: #d8d8d8;
+  }
+}
