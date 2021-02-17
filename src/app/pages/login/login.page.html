@@ -18,29 +18,9 @@
         <ion-input id="input" type='password' clearInput placeholder="Enter Password"></ion-input>
         <ion-icon id='icon' slot="start" name="lock-closed"></ion-icon>
       </div>
-      <!--  
-      <div class="input">
-        <ion-item>
-          <ion-icon slot="start" name="person"></ion-icon>
-          <ion-label position="floating">Username</ion-label>
-          <ion-input type='email' clearInput required="true"></ion-input>
-        </ion-item>
 
-      </div>
-
-      <div class="input">
-
-        <ion-item>
-          <ion-icon slot="start" name="lock-closed"></ion-icon>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type='password' clearInput required="true"></ion-input>
-        </ion-item>
-
-      </div>
-
--->
       <div class="register">
-        <span>Don't have an account?<a>Sign up</a></span>
+        <span>Don't have an account?<a (click)="toRegister()">Sign up</a></span>
       </div>
 
 

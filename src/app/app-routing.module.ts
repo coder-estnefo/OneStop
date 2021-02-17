@@ -21,7 +21,7 @@ const routes: Routes = [
       import('./pages/owner/property/dashboard/dashboard.module').then(
         (m) => m.DashboardPageModule
       ),
-    ...canActivate(redirectUnauthorizedToLogin),
+    // ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'add-property',
@@ -29,7 +29,7 @@ const routes: Routes = [
       import('./pages/owner/property/add-property/add-property.module').then(
         (m) => m.AddPropertyPageModule
       ),
-    ...canActivate(redirectUnauthorizedToLogin),
+    // ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'view-properties',
@@ -37,7 +37,7 @@ const routes: Routes = [
       import(
         './pages/owner/property/view-properties/view-properties.module'
       ).then((m) => m.ViewPropertiesPageModule),
-    ...canActivate(redirectUnauthorizedToLogin),
+    // ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'edit-property',
@@ -45,7 +45,7 @@ const routes: Routes = [
       import('./pages/owner/property/edit-property/edit-property.module').then(
         (m) => m.EditPropertyPageModule
       ),
-    ...canActivate(redirectUnauthorizedToLogin),
+    // ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'view-appointments',
@@ -53,10 +53,20 @@ const routes: Routes = [
       import(
         './pages/owner/property/view-appointments/view-appointments.module'
       ).then((m) => m.ViewAppointmentsPageModule),
-    ...canActivate(redirectUnauthorizedToLogin),
+    //  ...canActivate(redirectUnauthorizedToLogin),
   },
 
 
+  {
+    path: 'navigation',
+    loadChildren: () =>
+      import('./pages/owner/navigation/navigation.module').then(
+        (m) => m.NavigationPageModule
+      ),
+    // ...canActivate(redirectUnauthorizedToLogin),
+  },
+
+  
   {
     path: 'login',
     loadChildren: () =>
@@ -67,16 +77,9 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/owner/register/register.module').then((m) => m.RegisterPageModule),
   },
-  {
-    path: 'navigation',
-    loadChildren: () =>
-      import('./pages/owner/navigation/navigation.module').then(
-        (m) => m.NavigationPageModule
-      ),
-    ...canActivate(redirectUnauthorizedToLogin),
-  },
+ 
 
-  /*{
+ /* {
     path: 'login',
     loadChildren: () =>
     import('./pages/login/login.module').then((m) => m.LoginPageModule),
@@ -84,8 +87,8 @@ const routes: Routes = [
  {
    path: 'registration',
    loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
- },
-*/
+ },*/
+
 
 ];
 
