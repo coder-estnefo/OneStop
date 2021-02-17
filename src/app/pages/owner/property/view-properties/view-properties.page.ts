@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login/login.service';
 import { PropertyService } from 'src/app/services/property/property.service';
 
@@ -27,6 +28,7 @@ export interface property {
 })
 export class ViewPropertiesPage implements OnInit {
   properties = [];
+  loading;
 
   slideOpts = {
     initialSlide: 1,
@@ -37,7 +39,9 @@ export class ViewPropertiesPage implements OnInit {
     private propertyService: PropertyService,
     private auth: AngularFireAuth,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    public alertController: AlertController,
+    public loadingController: LoadingController
   ) {}
 
   ngOnInit() {
@@ -63,5 +67,49 @@ export class ViewPropertiesPage implements OnInit {
     this.loginService.logout().then(() => {
       this.router.navigate(['/login']);
     });
+  }
+
+  async presentDeleteAlert(docID, images) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class alert-wrapper',
+      message: `
+        <h1>Confirm Delete</h1>
+        <p>Are you sure you want to delete this property?</p>
+        `,
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {},
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteProperty(docID, images);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class loading-wrapper',
+      message: 'Please wait...',
+    });
+    await this.loading.present();
+  }
+
+  deleteProperty(docID, images) {
+    this.presentLoading();
+    return this.propertyService
+      .deleteProperty(docID, images)
+      .then(() => {
+        this.loading.dismiss();
+      })
+      .catch(() => {
+        this.loading.dismiss();
+      });
   }
 }

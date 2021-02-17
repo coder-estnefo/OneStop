@@ -12,15 +12,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
   <ion-card class="property" *ngFor="let property of properties">
-    <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide *ngFor="let image of property.images" class="img-slide">
-        <ion-img
-          class="property-img"
-          [src]="image"
-          [alt]="property.description"
-        ></ion-img>
+    <ion-slides pager="true" [options]="slideOpts" class="img-slide">
+      <ion-slide *ngFor="let image of property.images" class="property-img">
+        <img [src]="image" [alt]="property.description" />
       </ion-slide>
     </ion-slides>
 
@@ -47,7 +43,11 @@
     >
       edit <ion-icon name="create"></ion-icon>
     </button>
-    <button type="button" class="delete-btn">
+    <button
+      type="button"
+      class="delete-btn"
+      (click)="presentDeleteAlert(property.docID, property.images)"
+    >
       delete <ion-icon name="trash"></ion-icon>
     </button>
   </ion-card>
