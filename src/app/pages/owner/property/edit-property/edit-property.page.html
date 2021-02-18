@@ -110,7 +110,11 @@
           <ion-img class="img" [src]="img" alt="property images"></ion-img>
         </div>
         <div class="prop-controls">
-          <button type="button" [disabled]="currentImages.length === 1">
+          <button
+            type="button"
+            [hidden]="currentImages.length === 1"
+            (click)="presentDeleteAlert(img)"
+          >
             Delete<ion-icon name="trash"></ion-icon>
           </button>
         </div>

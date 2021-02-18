@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { LoginService } from 'src/app/services/login/login.service';
 import { PropertyService } from 'src/app/services/property/property.service';
@@ -29,6 +30,8 @@ export class EditPropertyPage implements OnInit {
 
   imageUpload = false;
 
+  loading;
+
   constructor(
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
@@ -36,7 +39,9 @@ export class EditPropertyPage implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private auth: AngularFireAuth,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loadingController: LoadingController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -205,5 +210,50 @@ export class EditPropertyPage implements OnInit {
     this.loginService.logout().then(() => {
       this.router.navigate(['/login']);
     });
+  }
+
+  deleteImage(img) {
+    this.presentLoading();
+    let images = this.currentImages.filter((currentImg) => currentImg !== img);
+    this.propertyService
+      .deletePropertyImage(this.propertyDocID, images)
+      .then(() => {
+        this.loading.dismiss();
+      })
+      .catch(() => {
+        this.loading.dismiss();
+      });
+  }
+
+  async presentDeleteAlert(img) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class alert-wrapper',
+      message: `
+        <h1>Confirm Delete</h1>
+        <p>Are you sure you want to delete this Image?</p>
+        `,
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {},
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteImage(img);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class loading-wrapper',
+      message: 'Please wait...',
+    });
+    await this.loading.present();
   }
 }
