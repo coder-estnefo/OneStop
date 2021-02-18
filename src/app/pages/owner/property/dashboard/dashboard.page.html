@@ -9,21 +9,21 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-card class="card blue">
+  <ion-card class="card" color="primary">
     <h2 class="card-label">Viewing Requests</h2>
     <h3 class="card-day">Today</h3>
     <div class="badge red" routerLink="/view-appointments">
       <h3 class="badge-count">0</h3>
     </div>
   </ion-card>
-  <ion-card class="card blue">
+  <ion-card class="card" color="primary">
     <h2 class="card-label">Properties</h2>
     <div class="badge red" routerLink="/view-properties">
       <h3 class="badge-count">{{propertiesCount}}</h3>
     </div>
     <div>
-      <h3 class="add" routerLink="/add-property">Add</h3>
-      <h3 class="view" routerLink="/view-properties">View</h3>
+      <button color="danger" type="button" class="add" routerLink="/add-property">Add</button>
+      <button type="button" class="view" routerLink="/view-properties">View</button>
     </div>
   </ion-card>
 </ion-content>

@@ -123,6 +123,7 @@ export class AddPropertyPage implements OnInit {
   }
 
   uploadFile(event) {
+    this.isUpload = true;
     const file = event.target.files[0];
     this.imagesList.push(file);
 
@@ -139,6 +140,7 @@ export class AddPropertyPage implements OnInit {
         finalize(() => {
           ref.getDownloadURL().subscribe((downloadURL) => {
             this.imagesUrls.push(downloadURL);
+            this.isUpload = false;
           });
         })
       )
