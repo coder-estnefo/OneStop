@@ -129,4 +129,15 @@ export class PropertyService {
         });
       });
   }
+
+  //delete a single property image
+  deletePropertyImage(pID, img) {
+    return this.firestore
+      .collection('Properties')
+      .doc(pID)
+      .update({ images: img })
+      .then(() => {
+        return this.storage.refFromURL(img).delete();
+      });
+  }
 }
