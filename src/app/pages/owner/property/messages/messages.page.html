@@ -10,12 +10,13 @@
 <ion-content>
   <ion-list *ngFor="let chat of chats">
     <ion-item button *ngIf="chat.from === userID; else to">
-      <ion-avatar slot="start">
+      <ion-avatar slot="end">
         <img
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
         />
       </ion-avatar>
       <ion-label class="you ion-text-wrap">
+        <ion-text>You</ion-text>
         <p>
           {{chat.message}}
           <br />
@@ -26,12 +27,12 @@
 
     <ng-template #to>
       <ion-item button>
-        <ion-avatar slot="end">
+        <ion-avatar slot="start">
           <img
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
           />
         </ion-avatar>
-        <ion-label class="you ion-text-wrap">
+        <ion-label class="receiver ion-text-wrap">
           <p>
             {{chat.message}}
             <br />

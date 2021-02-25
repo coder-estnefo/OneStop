@@ -24,9 +24,8 @@ export class MessagesPage implements OnInit {
       this.userID = param.userID;
       this.propID = param.propertyID;
       this.sendTo = param.sendTo;
-    });
 
-    this.propertyService.getChats(this.userID).subscribe((response) => {
+      this.propertyService.getChats(this.userID).subscribe((response) => {
       this.chats = response.map((chats) => {
         return {
           id: chats.payload.doc.id,
@@ -47,6 +46,9 @@ export class MessagesPage implements OnInit {
       this.chats = temp_chats;
       console.log(this.chats);
     });
+    });
+
+    
   }
 
   sendMessage() {
