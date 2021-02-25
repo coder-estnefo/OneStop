@@ -32,18 +32,19 @@ export class AddPropertyPage implements OnInit {
 
   ngOnInit() {
     this.propertyForm = this.formBuilder.group({
-      province: ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
-      address: [
-        '',
-        [Validators.required, Validators.pattern('^[A-Z a-z 0-9]+$')],
-      ],
+      address: this.formBuilder.group({
+        streetAddress: ['', [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
+        suburb: ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        province: ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        areaCode: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      }),
       price: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       bedrooms: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       bathrooms: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       garages: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       description: [
         '',
-        [Validators.required, Validators.pattern('^[A-Z a-z 0-9]+$')],
+        [Validators.required, Validators.pattern('^[A-Z a-z 0-9 ,.]+$')],
       ],
       propertyImages: this.formBuilder.array([this.formBuilder.control('')]),
     });
@@ -80,7 +81,6 @@ export class AddPropertyPage implements OnInit {
     const images = this.imagesUrls;
 
     const {
-      province,
       address,
       price,
       bedrooms,
@@ -91,7 +91,6 @@ export class AddPropertyPage implements OnInit {
 
     const details = {
       ownerID,
-      province,
       address,
       price,
       bedrooms,

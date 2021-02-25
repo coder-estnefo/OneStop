@@ -45,7 +45,6 @@ export class PropertyService {
   addProperty(property) {
     const {
       ownerID,
-      province,
       address,
       price,
       bedrooms,
@@ -57,7 +56,6 @@ export class PropertyService {
 
     return this.firestore.collection('Properties').add({
       ownerID,
-      province,
       address,
       price,
       bedrooms,
@@ -90,7 +88,6 @@ export class PropertyService {
     const {
       docID,
       ownerID,
-      province,
       address,
       price,
       bedrooms,
@@ -105,7 +102,6 @@ export class PropertyService {
 
     return this.firestore.collection('Properties').doc(docID).set({
       ownerID,
-      province,
       address,
       price,
       bedrooms,

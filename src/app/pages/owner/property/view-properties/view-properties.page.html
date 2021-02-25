@@ -28,7 +28,12 @@
       <ion-text style="font-size: 22px">{{property.garages}}</ion-text>
       <ion-icon name="car"></ion-icon>
     </div>
-    <ion-label class="address">{{property.address}}</ion-label><br />
+    <ion-label class="address">
+      {{property.address.streetAddress}}<br>
+      {{property.address.suburb}}<br>
+      {{property.address.province}}
+      {{property.address.areaCode}}<br>
+    </ion-label><br />
     <ion-label>{{property.province}}</ion-label><br />
     <ion-label>R{{property.price}}</ion-label><br />
     <p>

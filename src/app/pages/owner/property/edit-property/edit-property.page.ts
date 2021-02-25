@@ -60,7 +60,6 @@ export class EditPropertyPage implements OnInit {
           this.imagesUrls = this.currentProperty.images;
 
           const {
-            province,
             address,
             price,
             bedrooms,
@@ -70,14 +69,24 @@ export class EditPropertyPage implements OnInit {
           } = this.currentProperty;
 
           this.propertyForm = this.formBuilder.group({
-            province: [
-              province,
-              [Validators.required, Validators.pattern('^[A-Z a-z]+$')],
-            ],
-            address: [
-              address,
-              [Validators.required, Validators.pattern('^[A-Z a-z 0-9]+$')],
-            ],
+            address: this.formBuilder.group({
+              streetAddress: [
+                address.streetAddress, 
+                [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]
+              ],
+              suburb: [
+                address.suburb, 
+                [Validators.required, Validators.pattern('^[A-Z a-z]+$')]
+              ],
+              province: [
+                address.province, 
+                [Validators.required, Validators.pattern('^[A-Z a-z]+$')]
+              ],
+              areaCode: [
+                address.areaCode, 
+                [Validators.required, Validators.pattern('^[0-9]+$')]
+              ],
+            }),
             price: [
               price,
               [Validators.required, Validators.pattern('^[0-9]+$')],
@@ -96,7 +105,7 @@ export class EditPropertyPage implements OnInit {
             ],
             description: [
               description,
-              [Validators.required, Validators.pattern('^[A-Z a-z 0-9]+$')],
+              [Validators.required, Validators.pattern('^[A-Z a-z 0-9 ,.]+$')],
             ],
             propertyImages: this.formBuilder.array([
               this.formBuilder.control(''),
@@ -135,7 +144,6 @@ export class EditPropertyPage implements OnInit {
     const images = this.imagesUrls;
 
     const {
-      province,
       address,
       price,
       bedrooms,
@@ -149,7 +157,6 @@ export class EditPropertyPage implements OnInit {
     const details = {
       docID: this.propertyDocID,
       ownerID,
-      province,
       address,
       price,
       bedrooms,
