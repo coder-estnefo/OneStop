@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/view-appointments"></ion-back-button>
+    </ion-buttons>
+    <ion-title>messages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let chat of chats">
+    <ion-item button *ngIf="chat.from === userID; else to">
+      <ion-avatar slot="start">
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
+        />
+      </ion-avatar>
+      <ion-label class="you ion-text-wrap">
+        <p>
+          {{chat.message}}
+          <br />
+          <ion-text class="ion-text-right">{{chat.time}}</ion-text>
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ng-template #to>
+      <ion-item button>
+        <ion-avatar slot="end">
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
+          />
+        </ion-avatar>
+        <ion-label class="you ion-text-wrap">
+          <p>
+            {{chat.message}}
+            <br />
+            <ion-text class="ion-text-right">{{chat.time}}</ion-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ng-template>
+    <div id="bottom"></div>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" color="light">
+        <textarea [(ngModel)]="text"></textarea>
+        <ion-button shape="round" color="primary" (click)="sendMessage()">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

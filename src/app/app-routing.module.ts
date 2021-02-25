@@ -21,7 +21,7 @@ const routes: Routes = [
       import('./pages/owner/property/dashboard/dashboard.module').then(
         (m) => m.DashboardPageModule
       ),
-    // ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'add-property',
@@ -29,7 +29,7 @@ const routes: Routes = [
       import('./pages/owner/property/add-property/add-property.module').then(
         (m) => m.AddPropertyPageModule
       ),
-    // ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'view-properties',
@@ -37,7 +37,7 @@ const routes: Routes = [
       import(
         './pages/owner/property/view-properties/view-properties.module'
       ).then((m) => m.ViewPropertiesPageModule),
-    // ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'edit-property',
@@ -45,7 +45,7 @@ const routes: Routes = [
       import('./pages/owner/property/edit-property/edit-property.module').then(
         (m) => m.EditPropertyPageModule
       ),
-    // ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'view-appointments',
@@ -53,7 +53,7 @@ const routes: Routes = [
       import(
         './pages/owner/property/view-appointments/view-appointments.module'
       ).then((m) => m.ViewAppointmentsPageModule),
-    //  ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
 
   {
@@ -62,7 +62,7 @@ const routes: Routes = [
       import('./pages/owner/navigation/navigation.module').then(
         (m) => m.NavigationPageModule
       ),
-    // ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
 
   {
@@ -77,6 +77,23 @@ const routes: Routes = [
         (m) => m.RegisterPageModule
       ),
   },
+  // {
+  //   path: 'car-wash-dashboard',
+  //   loadChildren: () => import('./pages/owner/car-wash/car-wash-dashboard/car-wash-dashboard.module').then( m => m.CarWashDashboardPageModule)
+  // },
+  // {
+  //   path: 'add-car-wash-details',
+  //   loadChildren: () => import('./pages/owner/car-wash/add-car-wash-details/add-car-wash-details.module').then( m => m.AddCarWashDetailsPageModule)
+  // },
+  // {
+  //   path: 'add-car-wash-services',
+  //   loadChildren: () => import('./pages/owner/car-wash/add-car-wash-services/add-car-wash-services.module').then( m => m.AddCarWashServicesPageModule)
+  // },
+  {
+    path: 'messages',
+    loadChildren: () => import('./pages/owner/property/messages/messages.module').then( m => m.MessagesPageModule)
+  },
+
 
   /* {
     path: 'login',

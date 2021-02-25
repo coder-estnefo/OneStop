@@ -36,7 +36,9 @@ export class PropertyService {
 
   // Get appointments
   getAppointments(propertyId: string) {
-    // return this.firestore.collection(`Properties/${{propertyId}}/Appointments`).snapshotChanges();
+    return this.firestore
+      .collection(`Properties/${{ propertyId }}/Appointments/`)
+      .snapshotChanges();
   }
 
   // Add property
@@ -139,5 +141,60 @@ export class PropertyService {
       .then(() => {
         return this.storage.refFromURL(img).delete();
       });
+  }
+
+  // //Chat
+  // startChat(chat) {
+  //   const { id, message, from, to, time, date } = chat;
+
+  //   return this.firestore.collection('chats').add({
+  //     id,
+  //     message,
+  //     from,
+  //     to,
+  //     time,
+  //     date,
+  //   });
+  // }
+
+  // //get chats
+  // getChats(userID) {
+  //   return this.firestore.collection('chats').snapshotChanges();
+  // }
+
+  setChatID(uid1, uid2) {
+    if (uid1 < uid2) {
+      return uid1 + uid2;
+    } else {
+      return uid2 + uid1;
+    }
+  }
+
+  //Chat
+  startChat(chat) {
+    const { id, message, from, to, time, date } = chat;
+    const chatID = this.setChatID(from, to);
+    return this.firestore.collection('chats').doc(from).collection('messages').add({
+      id,
+      message,
+      from,
+      to,
+      time,
+      date,
+    }).then(()=> {
+      return this.firestore.collection('chats').doc(to).collection('messages').add({
+        id,
+        message,
+        from,
+        to,
+        time,
+        date,
+      })
+    })
+  }
+
+  //get chats
+  getChats(userID) {
+    return this.firestore.collection('chats').doc(userID).collection('messages').snapshotChanges();
   }
 }
