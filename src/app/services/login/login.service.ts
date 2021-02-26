@@ -23,6 +23,7 @@ export class LoginService {
           userID,
           name,
           surname,
+          role: 'owner'
         });
       });
   }
