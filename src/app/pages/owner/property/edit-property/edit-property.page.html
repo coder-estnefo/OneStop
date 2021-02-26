@@ -22,25 +22,31 @@
 
     <form [formGroup]="propertyForm" *ngIf="currentProperty">
       <div [hidden]="hideDetails">
-        <div formGroupName="address" class="address">
+
+        <div class="form-control">
+          <label class="form-label">Property Name</label>
+          <input type="text" placeholder="" formControlName="name" required />
+        </div>
+
+        <div formGroupName="location" class="address">
           <div class="form-control">
             <label class="form-label">Street Address</label>
-            <input type="text" placeholder="" formControlName="streetAddress" required />
+            <input type="text" placeholder="" formControlName="0" required />
           </div>
         
           <div class="form-control">
             <label class="form-label">Suburb</label>
-            <input type="text" placeholder="" formControlName="suburb" required />
+            <input type="text" placeholder="" formControlName="1" required />
           </div>
         
           <div class="form-control">
             <label class="form-label">Province</label>
-            <input type="text" placeholder="" formControlName="province" required />
+            <input type="text" placeholder="" formControlName="2" required />
           </div>
         
           <div class="form-control">
             <label class="form-label">Area Code</label>
-            <input type="text" placeholder="" formControlName="areaCode" required />
+            <input type="text" placeholder="" formControlName="3" required />
           </div>
         </div>
 
@@ -89,8 +95,9 @@
             type="button"
             (click)="update()"
             value="Update"
-            [disabled]=" 
-              propertyForm.controls.address.invalid ||  
+            [disabled]="
+              propertyForm.controls.name.invalid ||
+              propertyForm.controls.location.invalid ||  
               propertyForm.controls.price.invalid || 
               propertyForm.controls.bedrooms.invalid || 
               propertyForm.controls.bathrooms.invalid ||

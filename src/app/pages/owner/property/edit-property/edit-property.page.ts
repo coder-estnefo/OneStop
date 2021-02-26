@@ -60,7 +60,8 @@ export class EditPropertyPage implements OnInit {
           this.imagesUrls = this.currentProperty.images;
 
           const {
-            address,
+            name,
+            location,
             price,
             bedrooms,
             bathrooms,
@@ -69,24 +70,27 @@ export class EditPropertyPage implements OnInit {
           } = this.currentProperty;
 
           this.propertyForm = this.formBuilder.group({
-            address: this.formBuilder.group({
-              streetAddress: [
-                address.streetAddress, 
+            name: [
+              name, [Validators.required, Validators.pattern('^[A-Z a-z]+$')]
+            ],
+            location: this.formBuilder.array([
+              [
+                location[0], 
                 [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]
               ],
-              suburb: [
-                address.suburb, 
+              [
+                location[1], 
                 [Validators.required, Validators.pattern('^[A-Z a-z]+$')]
               ],
-              province: [
-                address.province, 
+              [
+                location[2], 
                 [Validators.required, Validators.pattern('^[A-Z a-z]+$')]
               ],
-              areaCode: [
-                address.areaCode, 
+              [
+                location[3], 
                 [Validators.required, Validators.pattern('^[0-9]+$')]
               ],
-            }),
+            ]),
             price: [
               price,
               [Validators.required, Validators.pattern('^[0-9]+$')],
@@ -105,7 +109,7 @@ export class EditPropertyPage implements OnInit {
             ],
             description: [
               description,
-              [Validators.required, Validators.pattern('^[A-Z a-z 0-9 ,.]+$')],
+              [Validators.required, Validators.pattern('^[A-Z a-z 0-9 ,. \r\n]+$')],
             ],
             propertyImages: this.formBuilder.array([
               this.formBuilder.control(''),
@@ -144,20 +148,21 @@ export class EditPropertyPage implements OnInit {
     const images = this.imagesUrls;
 
     const {
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
       garages,
       description,
+      name,
     } = this.propertyForm.value;
 
-    const { availability_status, popular, propertyID } = this.currentProperty;
+    const { availability_status, favorite, propertyID } = this.currentProperty;
 
     const details = {
       docID: this.propertyDocID,
       ownerID,
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
@@ -165,8 +170,9 @@ export class EditPropertyPage implements OnInit {
       description,
       images,
       availability_status,
-      popular,
+      favorite,
       propertyID,
+      name,
     };
 
     this.propertyService

@@ -32,19 +32,20 @@ export class AddPropertyPage implements OnInit {
 
   ngOnInit() {
     this.propertyForm = this.formBuilder.group({
-      address: this.formBuilder.group({
-        streetAddress: ['', [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
-        suburb: ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
-        province: ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
-        areaCode: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      }),
+      name: ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+      location: this.formBuilder.array([
+        ['', [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      ]),
       price: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       bedrooms: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       bathrooms: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       garages: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       description: [
         '',
-        [Validators.required, Validators.pattern('^[A-Z a-z 0-9 ,.]+$')],
+        [Validators.required, Validators.pattern('^[A-Z a-z 0-9 ,. \r\n]+$')],
       ],
       propertyImages: this.formBuilder.array([this.formBuilder.control('')]),
     });
@@ -81,23 +82,27 @@ export class AddPropertyPage implements OnInit {
     const images = this.imagesUrls;
 
     const {
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
       garages,
       description,
+      name,
     } = this.propertyForm.value;
 
     const details = {
       ownerID,
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
       garages,
       description,
       images,
+      name,
+      availability_status: true,
+      favorite: false,
     };
 
     this.propertyService

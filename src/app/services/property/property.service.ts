@@ -45,26 +45,30 @@ export class PropertyService {
   addProperty(property) {
     const {
       ownerID,
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
       garages,
       description,
       images,
+      name,
+      availability_status,
+      favorite,
     } = property;
 
     return this.firestore.collection('Properties').add({
       ownerID,
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
       garages,
       description,
       images,
-      availability_status: '',
-      popular: true,
+      availability_status,
+      favorite,
+      name,
       propertyID: new Date().getTime().toString() + ownerID.substring(5, 10),
     });
   }
@@ -88,7 +92,7 @@ export class PropertyService {
     const {
       docID,
       ownerID,
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
@@ -96,13 +100,14 @@ export class PropertyService {
       description,
       images,
       availability_status,
-      popular,
+      favorite,
       propertyID,
+      name
     } = property;
 
     return this.firestore.collection('Properties').doc(docID).set({
       ownerID,
-      address,
+      location,
       price,
       bedrooms,
       bathrooms,
@@ -110,8 +115,9 @@ export class PropertyService {
       description,
       images,
       availability_status,
-      popular,
+      favorite,
       propertyID,
+      name,
     });
   }
 
@@ -169,7 +175,7 @@ export class PropertyService {
   //Chat
   startChat(chat) {
     const { id, message, from, to, time, date } = chat;
-    const chatID = this.setChatID(from, to);
+    const chatID = this.setChatID(from, to) + id;
     return this.firestore.collection('chats').doc(from).collection('messages').add({
       id,
       message,
@@ -177,6 +183,7 @@ export class PropertyService {
       to,
       time,
       date,
+      chatID,
     }).then(()=> {
       return this.firestore.collection('chats').doc(to).collection('messages').add({
         id,
@@ -185,6 +192,7 @@ export class PropertyService {
         to,
         time,
         date,
+        chatID,
       })
     })
   }
