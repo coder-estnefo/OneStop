@@ -13,7 +13,7 @@ export class LoginService {
     private firestore: AngularFirestore
   ) {}
 
-  register(email, password, name, surname) {
+  register(email, password, name, surname,chatId) {
     return this.fireAuth
       .createUserWithEmailAndPassword(email, password)
       .then((results) => {
@@ -23,6 +23,7 @@ export class LoginService {
           userID,
           name,
           surname,
+          chatId,
           role: 'owner'
         });
       });

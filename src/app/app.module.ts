@@ -14,6 +14,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,7 +29,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     HttpClientModule,
     AngularFireStorageModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },OneSignal],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
