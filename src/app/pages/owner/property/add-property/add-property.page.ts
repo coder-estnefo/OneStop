@@ -31,6 +31,7 @@ export class AddPropertyPage implements OnInit {
   ) {}
 
   ngOnInit() {
+
     this.propertyForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
       location: this.formBuilder.array([

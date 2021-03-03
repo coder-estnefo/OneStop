@@ -48,7 +48,7 @@ export class RegisterPage implements OnInit {
     let chatId
 
 		this.oneSignal.getIds().then(id => {
-			chatId = id.userId
+			chatId = id.userId;
 		});
 
 
@@ -59,6 +59,7 @@ export class RegisterPage implements OnInit {
       .then(() => {
         this.isLoading = false;
         this.router.navigate(['/navigation'], {
+
           queryParams: { status: 'success' },
         });
       })
