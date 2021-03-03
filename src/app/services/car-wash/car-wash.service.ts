@@ -1,5 +1,7 @@
+import { property } from './../../pages/owner/property/view-properties/view-properties.page';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 export interface ICarWash{
     id: string;
@@ -32,7 +34,8 @@ export interface ISlot{
 export class CarWashService {
 
     constructor(
-        private firestore: AngularFirestore
+      private storage: AngularFireStorage,
+      private firestore: AngularFirestore
     ) { }
 
     // Get all wash slots
@@ -54,7 +57,7 @@ export class CarWashService {
     getRecommendedCarwashes(){
         return this.firestore.collection('Carwashes', ref => ref.where('popular', '==', true)).snapshotChanges();
     }
-    
+
     // Get car wash by Id
     getCarWashById(carwashId: string){
         return this.firestore.collection('Carwashes').doc(carwashId).snapshotChanges();
@@ -66,22 +69,23 @@ export class CarWashService {
     }
 
     // Get car wash owner by Id
-    getCarWashOwnerById(ownerId: string, carwashId){
-        return this.firestore.collection('Carwashes/' + carwashId + '/Owners').doc(ownerId).snapshotChanges();
+    getOwnerCarwashes(ownerId: string){
+        return this.firestore.collection('Carwashes' , (ref) => ref.where('ownerID', '==', ownerId)).snapshotChanges();
     }
 
     // Search car washes by location
     searchCarwashesByLocation(location: string){
         return this.firestore.collection('Carwashes', ref => ref.where('location', '>=', '0')).snapshotChanges();
-    }   
+    }
 
     // Add car wash
     addCarWash(carwash){
-        this.firestore.collection('Carwashes').add({
+        return this.firestore.collection('Carwashes').add({
             name: carwash.name,
-            image: carwash.images,
+            images: carwash.images,
+            ownerID: carwash.ownerID,
             location: carwash.location,
-            popular: carwash.popular,
+            description: carwash.description,
         });
     }
 
@@ -98,5 +102,39 @@ export class CarWashService {
                 color: slot.vehicle.color,
             }
         });
-    }  
+    }
+
+    updateCarwash(carwash) {
+      return this.firestore.collection('Carwashes').doc(carwash.docID).update({
+        name: carwash.name,
+        images: carwash.images,
+        ownerID: carwash.ownerID,
+        location: carwash.location,
+        description: carwash.description,
+      });
+    }
+
+    //delete property
+  deleteCarwash(docID, images) {
+    return this.firestore
+      .collection('Carwashes')
+      .doc(docID)
+      .delete()
+      .then(() => {
+        images.map((img) => {
+          this.storage.refFromURL(img).delete();
+        });
+      });
+  }
+
+  //delete a single property image
+  deleteCarwashImage(pID, img) {
+    return this.firestore
+      .collection('Carwashes')
+      .doc(pID)
+      .update({ images: img })
+      .then(() => {
+        return this.storage.refFromURL(img).delete();
+      });
+  }
 }

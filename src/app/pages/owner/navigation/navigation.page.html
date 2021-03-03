@@ -1,24 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Navigation</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Navigation</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
-  <ion-card class="main-card">
-    <ion-card class="property-card" routerLink="/property-dashboard" color="primary">
-      <h2>Property</h2>
+    <ion-card class="main-card">
+        <ion-card class="property-card" routerLink="/property-dashboard" color="primary">
+            <h2>Property</h2>
+        </ion-card>
+        <ion-card class="car-wash-card" routerLink="/carwash-dashboard" color="warning">
+            <h2>Car Wash</h2>
+        </ion-card>
+        <ion-card class="events-card" color="danger">
+            <h2>Cleanig Services</h2>
+        </ion-card>
     </ion-card>
-    <ion-card class="car-wash-card" routerLink color="warning">
-      <h2>Car Wash</h2>
-    </ion-card>
-    <ion-card class="events-card" color="danger">
-      <h2>Cleanig Services</h2>
-    </ion-card>
-  </ion-card>
 </ion-content>

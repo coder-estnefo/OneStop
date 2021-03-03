@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/carwash-dashboard"></ion-back-button>
+        </ion-buttons>
+        <ion-title>View-Carwashes</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <ion-card class="property" *ngFor="let carwash of carwashes">
+        <ion-slides pager="true" [options]="slideOpts" class="img-slide">
+            <ion-slide *ngFor="let image of carwash.images" class="property-img">
+                <img [src]="image" [alt]="carwash.description" />
+            </ion-slide>
+        </ion-slides>
+
+        <ion-label class="address" *ngFor="let address of carwash.location">
+            {{address}}
+        </ion-label><br />
+        <ion-label>{{carwash.province}}</ion-label><br />
+        <!-- <ion-label>R{{carwash.price}}</ion-label><br /> -->
+        <p>
+            {{carwash.description}}
+            <!-- <span>show more</span> -->
+        </p>
+
+        <button type="button" class="edit-btn" (click)="editCarwash(carwash.id)">
+          edit <ion-icon name="create"></ion-icon>
+        </button>
+        <button type="button" class="delete-btn" (click)="presentDeleteAlert(carwash.id, carwash.images)">
+      delete <ion-icon name="trash"></ion-icon>
+    </button>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <ion-card class="card" color="primary">
+        <!-- <h2 class="card-label">Viewing Requests</h2>
+    <h3 class="card-day">Today</h3> -->
+        <div class="badge red" routerLink="/view-appointments">
+            <h3 class="badge-count">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+            </h3>
+
+        </div>
+    </ion-card>
+    <ion-card class="card" color="primary">
+        <h2 class="card-label">Carwash</h2>
+        <div class="badge red" routerLink="/view-properties">
+            <h3 class="badge-count">{{propertiesCount}}</h3>
+        </div>
+        <div>
+            <button color="danger" type="button" class="add" routerLink="/add-carwash">Add</button>
+            <button type="button" class="view" routerLink="/view-carwashes">View</button>
+        </div>
+    </ion-card>
+</ion-content>
