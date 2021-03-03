@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { AlertController } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login/login.service';
+import firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,9 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private loginservice: LoginService,
     private router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private oneSignal: OneSignal,
+    private firestore: AngularFirestore
   ) {}
 
   ngOnInit() {
@@ -39,10 +44,39 @@ export class LoginPage implements OnInit {
     this.loginservice
       .login(email, password)
       .then(() => {
-        this.isLoading = false;
-        this.router.navigate(['/navigation'], {
-          queryParams: { status: 'success' },
+
+        let userID = firebase.auth().currentUser.uid;
+
+        this.oneSignal.startInit('7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3', '482944391704');
+
+        this.oneSignal.setExternalUserId(userID);
+
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+
+        this.oneSignal.handleNotificationReceived().subscribe(() => {
+          alert('notification received')
         });
+
+        this.oneSignal.handleNotificationOpened().subscribe(() => {
+          alert('notification opened')
+        });
+        
+        this.oneSignal.endInit();
+
+        this.oneSignal.getIds().then((user)=>{
+          this.firestore.collection('Owner').doc(userID).update({
+            playerID: user.userId
+          }).then(()=>{
+            this.isLoading = false;
+            this.router.navigate(['/navigation'], {
+              queryParams: { status: 'success' },
+            });
+          })
+        })
+
+        // this.router.navigate(['/navigation'], {
+        //   queryParams: { status: 'success' },
+        // });
       })
       .catch((error) => {
         this.isLoading = false;
