@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">OneStop</string>
-    <string name="title_activity_main">OneStop</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">OneStop Owner</string>
+    <string name="title_activity_main">OneStop Owner</string>
+    <string name="package_name">com.OneStop.Owner</string>
+    <string name="custom_url_scheme">com.OneStop.Owner</string>
 </resources>

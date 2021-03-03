@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,8 @@ export class LoginService {
 
   constructor(
     private fireAuth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private oneSignal: OneSignal
   ) {}
 
   register(email, password, name, surname,chatId) {
@@ -19,7 +21,7 @@ export class LoginService {
       .then((results) => {
         this.getAuthState();
         let userID = results.user.uid;
-        return this.firestore.collection('Owner').add({
+        return this.firestore.collection('Owner').doc(userID).set({
           userID,
           name,
           surname,
@@ -48,6 +50,8 @@ export class LoginService {
   }
 
   logout() {
-    return this.fireAuth.signOut();
+    return this.fireAuth.signOut().then(() => {
+      this.oneSignal.removeExternalUserId();
+    })
   }
 }
