@@ -1,0 +1,83 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/property-dashboard"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Add Carwash</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <ion-card class="property">
+        <h2>
+            <span class="details-nav"> Details </span> &gt;
+            <span class="images-nav"> Images </span>
+        </h2>
+
+        <form [formGroup]="carwashForm">
+            <div [hidden]="hideDetails">
+
+                <div class="form-control">
+                    <label class="form-label">Property Name</label>
+                    <input type="text" placeholder="" formControlName="name" required />
+                </div>
+
+                <div formGroupName="location" class="address">
+                    <div class="form-control">
+                        <label class="form-label">Street Address</label>
+                        <input type="text" placeholder="" formControlName="0" required />
+                    </div>
+
+                    <div class="form-control">
+                        <label class="form-label">Suburb</label>
+                        <input type="text" placeholder="" formControlName="1" required />
+                    </div>
+
+                    <div class="form-control">
+                        <label class="form-label">Province</label>
+                        <input type="text" placeholder="" formControlName="2" required />
+                    </div>
+
+                    <div class="form-control">
+                        <label class="form-label">Area Code</label>
+                        <input type="text" placeholder="" formControlName="3" required />
+                    </div>
+                </div>
+
+                <div class="form-control">
+                    <label class="form-label">Description</label>
+                    <textarea rows="4" formControlName="description" required></textarea>
+                </div>
+                <div class="form-control">
+                    <input type="button" (click)="continue()" value="Continue" [disabled]="
+              carwashForm.controls.name.invalid ||
+              carwashForm.controls.location.invalid ||
+              carwashForm.controls.description.invalid
+            " />
+                </div>
+            </div>
+
+            <div [hidden]="hideImages" formArrayName="carwashImages" class="prop-images">
+                <div class="form-control" *ngFor="let image of carwashImages.controls; let i=index">
+                    <label class="form-label" for="upload">Images</label>
+                    <input id="upload" type="file" accept="image/*" [formControlName]="i" (change)="uploadFile($event)" required />
+                </div>
+
+                <div class="form-control">
+                    <ion-label (click)="addCarwashImage()">
+                        + Add one more image
+                    </ion-label>
+                </div>
+
+                <div class="form-control">
+                    <input type="submit" value="Upload" (click)="upload()" [disabled]="carwashForm.invalid || isUpload" />
+                </div>
+            </div>
+        </form>
+    </ion-card>
+</ion-content>

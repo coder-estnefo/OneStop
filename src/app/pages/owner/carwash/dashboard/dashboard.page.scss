@@ -1,0 +1,95 @@
+$blue: #7ab7e2;
+$blue: #3dc2ff;
+$red: #df4343;
+$white: #ffffff;
+$box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+0 2px 2px 0 rgba(0, 0, 0, 0.14),
+0 1px 5px 0 rgba(0, 0, 0, 0.12);
+.blue {
+    background-color: $blue;
+}
+
+.red {
+    background-color: $red;
+}
+
+.card {
+    border-radius: 17px;
+    text-transform: capitalize;
+    padding: 10px;
+    color: $white;
+    animation: fadeIn 2.5s;
+}
+
+@keyframes fadeIn {
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.5) translateY(50);
+    }
+    10% {
+        opacity: 0.1;
+        transform: scale(0.1) translateY(90);
+    }
+    // 100% {
+    //   transform: rotate(0deg);
+    // }
+    // 50% {
+    //   margin: auto;
+    //   transform: rotate(10deg);
+    //   width: 90%;
+    // }
+    // 25% {
+    //   margin: auto;
+    //   transform: rotate(-10deg);
+    //   width: 80%;
+    // }
+}
+
+.card-label {
+    text-align: center;
+    font-weight: 900;
+}
+
+.card-day {
+    text-align: center;
+}
+
+.badge {
+    margin: 2px auto;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    box-shadow: $box-shadow;
+}
+
+.badge-count {
+    padding: 28px 0;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.add {
+    float: left;
+    font-weight: 600;
+}
+
+.view {
+    float: right;
+    font-weight: 600;
+}
+
+button[type="button"] {
+    width: 30%;
+    height: 40px;
+    border-radius: 17px;
+    background-color: $white;
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: $box-shadow;
+    color: #666565;
+}
