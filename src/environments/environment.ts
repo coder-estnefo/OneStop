@@ -5,13 +5,13 @@
 export const environment = {
 	production: false,
 	firebase : {
-		apiKey: 'AIzaSyCdtb4rJHrS2vUuDxLYqOAIMAE80PiAW8I',
-		authDomain: 'cdc-kitchen.firebaseapp.com',
-		projectId: 'cdc-kitchen',
-		storageBucket: 'cdc-kitchen.appspot.com',
-		messagingSenderId: '59185726232',
-		appId: '1:59185726232:web:d0b365d415f71a0b5fd46d',
-		measurementId: 'G-WM1MTXFC44'
+		apiKey: "AIzaSyCHT0jQbvOcrYFWj78LFxwo_yer9qXUm84",
+    authDomain: "assignment-codetribe.firebaseapp.com",
+    projectId: "assignment-codetribe",
+    storageBucket: "assignment-codetribe.appspot.com",
+    messagingSenderId: "413141545532",
+    appId: "1:413141545532:web:e6d89e9b206ccd43a84939",
+    measurementId: "G-YNY2L8C6V6"
 	}
 };
 

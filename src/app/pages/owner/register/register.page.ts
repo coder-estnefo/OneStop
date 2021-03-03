@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login/login.service';
 
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -12,11 +14,15 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   isLoading = false;
+  app_id = "7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3";
+
+
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     public alertController: AlertController,
-    private router: Router
+    private router: Router,
+    private oneSignal: OneSignal
   ) {}
 
   ngOnInit() {
@@ -32,14 +38,24 @@ export class RegisterPage implements OnInit {
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+
+    this.initApp();
   }
 
   register() {
     this.isLoading = true;
+
+    let chatId
+
+		this.oneSignal.getIds().then(id => {
+			chatId = id.userId
+		});
+
+
     const { name, surname, email, password } = this.registerForm.value;
 
     this.loginService
-      .register(email, password, name, surname)
+      .register(email, password, name, surname, chatId )
       .then(() => {
         this.isLoading = false;
         this.router.navigate(['/navigation'], {
@@ -64,4 +80,31 @@ export class RegisterPage implements OnInit {
 
     await alert.present();
   }
+
+  initApp() {
+
+		this.oneSignal.startInit(this.app_id, '482944391704');
+		//send player id to firebase
+		this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
+
+		this.oneSignal.handleNotificationReceived().subscribe(data => {
+
+			let msg = data.payload.body;
+			let title = data.payload.title;
+
+			alert("received");
+		});
+
+		this.oneSignal.handleNotificationOpened().subscribe(data => {
+			let msg = data.notification.payload.body
+			// alert(msg)
+			alert("opened");
+		});
+
+		this.oneSignal.endInit();
+	}
+
+
+
+
 }
