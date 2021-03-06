@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from 'src/app/services/property/property.service';
+import { Calendar } from '@ionic-native/calendar/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @Component({
   selector: 'app-messages',
@@ -16,10 +18,15 @@ export class MessagesPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private propertyService: PropertyService
+    private propertyService: PropertyService,
+    private oneSignal: OneSignal,
+    private calendar: Calendar
   ) {}
 
   ngOnInit() {
+
+    this.calendar.createCalendar('MyCalendar').then(
+    );
     this.route.queryParams.subscribe((param) => {
       this.userID = param.userID;
       this.propID = param.propertyID;
@@ -72,6 +79,21 @@ export class MessagesPage implements OnInit {
 
 
   addEvent(chat) {
-    
+    let startdate = new Date()
+    let enddate = new Date()
+    let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
+
+    this.calendar.createEventInteractivelyWithOptions('new event', 'munster', 'notes',startdate, enddate, options).then(()=>{
+      alert("Event is set");
+    })
+  }
+
+  deleteEvent(){
+    let startdate = new Date()
+    let enddate = new Date()
+    let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
+    this.calendar.deleteEvent('new event', 'munster', 'notes',startdate, enddate).then(()=>{
+      alert("event deleted");
+    })
   }
 }
