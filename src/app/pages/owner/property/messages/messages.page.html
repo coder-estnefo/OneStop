@@ -36,6 +36,7 @@
           <p>
             {{chat.message}}
             <br />
+            <ion-button shape="round" (click)="addEvent(chat)">Add To Calendar</ion-button>
             <ion-text class="ion-text-right">{{chat.time}}</ion-text>
           </p>
         </ion-label>
@@ -45,10 +46,10 @@
   </ion-list>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar color="light">
     <ion-tabs>
-      <ion-tab-bar slot="bottom" color="light">
+      <ion-tab-bar color="light">
         <textarea [(ngModel)]="text"></textarea>
         <ion-button shape="round" color="primary" (click)="sendMessage()">
           <ion-icon name="send-outline"></ion-icon>
@@ -56,4 +57,4 @@
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

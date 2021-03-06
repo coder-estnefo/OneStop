@@ -69,4 +69,9 @@ export class MessagesPage implements OnInit {
       });
     }
   }
+
+
+  addEvent(chat) {
+    
+  }
 }
