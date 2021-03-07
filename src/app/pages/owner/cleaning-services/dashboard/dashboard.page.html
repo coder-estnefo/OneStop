@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+
+  <ion-card class="card" color="danger">
+    <ion-button (click)="toDetails()">Details</ion-button>
+    <ion-button (click)="toServices()">View Services</ion-button>
+  </ion-card>
+  
+</ion-content>

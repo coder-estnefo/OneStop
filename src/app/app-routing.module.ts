@@ -107,10 +107,23 @@ const routes: Routes = [
     path: 'edit-carwash',
     loadChildren: () => import('./pages/owner/carwash/edit-carwash/edit-carwash.module').then( m => m.EditCarwashPageModule),
     ...canActivate(redirectUnauthorizedToLogin),
-  },  {
+  },
+  {
     path: 'view-carwashes',
     loadChildren: () => import('./pages/owner/carwash/view-carwashes/view-carwashes.module').then( m => m.ViewCarwashesPageModule)
   },
+  {
+    path: 'cleaning-dashboard',
+    loadChildren: () => import('./pages/owner/cleaning-services/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },  {
+    path: 'cleaning-details',
+    loadChildren: () => import('./pages/owner/cleaning-services/cleaning-details/cleaning-details.module').then( m => m.CleaningDetailsPageModule)
+  },
+  {
+    path: 'view-cleaning-services',
+    loadChildren: () => import('./pages/owner/cleaning-services/view-cleaning-services/view-cleaning-services.module').then( m => m.ViewCleaningServicesPageModule)
+  },
+
 
 
 

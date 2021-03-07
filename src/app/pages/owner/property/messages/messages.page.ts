@@ -79,13 +79,20 @@ export class MessagesPage implements OnInit {
 
 
   addEvent(chat) {
+    console.log(chat);
     let startdate = new Date()
     let enddate = new Date()
-    let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
+    let options = { 
+      calendername: "Viewing Appointment", 
+      url: 'http://ionicacademy.com', 
+      firstReminderMinute: 15 
+    };
 
-    this.calendar.createEventInteractivelyWithOptions('new event', 'munster', 'notes',startdate, enddate, options).then(()=>{
-      alert("Event is set");
-    })
+    this.calendar
+      .createEventInteractivelyWithOptions('new event', chat.propertyName, 'notes',startdate, enddate, options)
+      .then(()=>{
+        alert("Event is set");
+      })
   }
 
   deleteEvent(){

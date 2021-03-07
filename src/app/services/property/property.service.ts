@@ -121,6 +121,16 @@ export class PropertyService {
     });
   }
 
+  //update the visibility status
+  changeVisibility(docID, status) {
+    return this.firestore
+      .collection('Properties')
+      .doc(docID)
+      .update({
+        availability_status: status
+      });
+  }
+
   //delete property
   deleteProperty(docID, images) {
     return this.firestore
