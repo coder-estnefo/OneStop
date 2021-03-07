@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login/login.service';
 import { PropertyService } from 'src/app/services/property/property.service';
 
@@ -41,7 +41,8 @@ export class ViewPropertiesPage implements OnInit {
     private router: Router,
     private loginService: LoginService,
     public alertController: AlertController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -112,4 +113,22 @@ export class ViewPropertiesPage implements OnInit {
         this.loading.dismiss();
       });
   }
+
+  switchVisibility(docID, status) {
+    let visibility = !status;
+    return this.propertyService
+      .changeVisibility(docID, visibility)
+      .then(()=> {
+        this.presentToast();
+      })
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Visibility Changed',
+      duration: 2000
+    });
+    toast.present();
+  }
+  
 }

@@ -28,6 +28,14 @@
       <ion-text style="font-size: 22px">{{property.garages}}</ion-text>
       <ion-icon name="car"></ion-icon>
     </div>
+    <div>
+      <ion-toggle 
+        [(ngModel)]="property.availability_status"
+        (click)="switchVisibility(property.docID, property.availability_status)"
+        [checked]="property.availability_status"
+      >
+      </ion-toggle>
+    </div>
     <ion-label class="address" *ngFor="let address of property.location">
       {{address}}
     </ion-label><br />
