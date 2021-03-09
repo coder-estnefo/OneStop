@@ -15,7 +15,7 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
   }
 
-  toDetails() {
+  addBusiness() {
     this.router.navigate(['cleaning-details']);
   }
 

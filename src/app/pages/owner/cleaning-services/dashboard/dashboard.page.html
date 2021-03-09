@@ -9,10 +9,20 @@
 </ion-header>
 
 <ion-content color="light">
+  <ion-card class="business-details">    
+    <div>
+      <h2 class="heading">Cleaning Service</h2>
+    </div>
+      
 
-  <ion-card class="card" color="danger">
-    <ion-button (click)="toDetails()">Details</ion-button>
-    <ion-button (click)="toServices()">View Services</ion-button>
+    <ion-button (click)="addBusiness()" shape="round" expand="full">
+      Add business
+    </ion-button>   
+    <ion-button shape="round" expand="full">
+      View business
+    </ion-button>   
+    <ion-button (click)="toServices()" shape="round" expand="full">
+      View Services 
+    </ion-button>     
   </ion-card>
-  
 </ion-content>
