@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import firebase from 'firebase/app';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-business',
@@ -34,7 +35,9 @@ export class EditBusinessPage implements OnInit {
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
     private cleaningService: CleaningService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public alertController: AlertController,
+    public loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -64,7 +67,7 @@ export class EditBusinessPage implements OnInit {
               [ address[0], [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
               [ address[1], [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
               [ address[2], [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
-              [ [address[3]], [Validators.required, Validators.pattern('^[0-9]+$')]],
+              [ address[3], [Validators.required, Validators.pattern('^[0-9]+$')]],
             ]),
             cleanersImages: this.formBuilder.array([this.formBuilder.control('')]),
           });
@@ -115,13 +118,12 @@ export class EditBusinessPage implements OnInit {
       ownerID,
       name,
       address,
-      favorite: false,
-      images
-
+      images,
+      id: this.businessID,
     };
 
     this.cleaningService
-      .addCleanersDetails(details)
+      .updateCleanersDetails(details)
       .then(() => {
         this.isUpload = false;
       })
@@ -158,6 +160,51 @@ export class EditBusinessPage implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  deleteImage(img) {
+    this.presentLoading();
+    let images = this.currentImages.filter((currentImg) => currentImg !== img);
+    this.cleaningService
+      .deleteBusinessImage(this.businessID, images)
+      .then(() => {
+        this.loading.dismiss();
+      })
+      .catch(() => {
+        this.loading.dismiss();
+      });
+  }
+
+  async presentDeleteAlert(img) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class alert-wrapper',
+      message: `
+        <h1>Confirm Delete</h1>
+        <p>Are you sure you want to delete this Image?</p>
+        `,
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {},
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteImage(img);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class loading-wrapper',
+      message: 'Please wait...',
+    });
+    await this.loading.present();
   }
 
   logout() {

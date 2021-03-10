@@ -52,4 +52,28 @@ export class CleaningService {
       .doc(id)
       .snapshotChanges();
   }
+
+  updateCleanersDetails(details) {
+    const { ownerID ,name, address, images, id} = details;
+    return this.firestore
+      .collection("Cleaning_Services")
+      .doc(id)
+      .set({
+        ownerID,
+        id,
+        name,
+        address,
+        images,
+      });
+  }
+
+  deleteBusinessImage(bID, img) {
+    return this.firestore
+      .collection('Cleaning_Services')
+      .doc(bID)
+      .update({ images: img })
+      .then(() => {
+        return this.storage.refFromURL(img).delete();
+      });
+  }
 }

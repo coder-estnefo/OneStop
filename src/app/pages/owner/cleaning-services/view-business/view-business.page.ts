@@ -33,14 +33,15 @@ export class ViewBusinessPage implements OnInit {
             ...business.payload.doc.data() as Object
           })
         })
+        console.log(user.uid)
       })
     })
   }
 
   editBusiness(id) {
-    // this.router.navigate(['/edit-business'], {
-    //   queryParams: { docID: id },
-    // });
+    this.router.navigate(['/edit-business'], {
+      queryParams: { docID: id },
+    });
   }
 
   async presentDeleteAlert(id, images) {

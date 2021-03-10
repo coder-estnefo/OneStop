@@ -21,7 +21,7 @@
       <span class="images-nav" (click)="images()"> Images </span>
     </h2>
   
-    <form [formGroup]="cleanersForm">
+    <form [formGroup]="cleanersForm" *ngIf="currentBusiness">
         <div [hidden]="hideDetails">
           <div class="form-control">
             <label class="form-label">Business Name</label>
@@ -49,9 +49,32 @@
               <input type="text" placeholder="" formControlName="3" required />
             </div>
           </div>
+
+          <div class="form-control">
+            <input 
+              type="button"
+              (click)="upload()" 
+              value="Update" 
+              [disabled]="
+                cleanersForm.controls.name.invalid ||
+                cleanersForm.controls.address.invalid" 
+            />
+          </div>
         </div>
+
+        <ion-card [hidden]="hideImages" class="view-cleaners-images" *ngFor="let img of currentImages">
+          <div class="cleaner-img">
+            <ion-img class="img" [src]="img" alt="cleaners images"></ion-img>
+          </div>
+          <div class="cleaners-controls">
+            <button type="button" [hidden]="currentImages.length === 1" (click)="presentDeleteAlert(img)">
+              Delete<ion-icon name="trash"></ion-icon>
+            </button>
+          </div>
+        </ion-card>
   
-        <div 
+        <div
+          [hidden]="hideImages"
           formArrayName="cleanersImages"
           class="cleaners-images"
         >
@@ -75,35 +98,17 @@
               + Add one more image
             </ion-label>
           </div>
-        </div>
-  
-        <div class="form-control">
-          <input 
-            type="submit" 
-            value="Upload" 
-            (click)="upload()" 
-            [disabled]="cleanersForm.invalid || isUpload" 
-          />
-        </div>
 
-        <ion-card
-          [hidden]="hideImages"
-          class="view-prop-images"
-          *ngFor="let img of currentImages"
-        >
-          <div class="prop-img">
-            <ion-img class="img" [src]="img" alt="property images"></ion-img>
+          <div class="form-control">
+            <input 
+              type="submit"
+              value="Upload" 
+              (click)="upload()" 
+              [disabled]="isUpload" 
+            />
           </div>
-          <div class="prop-controls">
-            <button
-              type="button"
-              [hidden]="currentImages.length === 1"
-              (click)="presentDeleteAlert(img)"
-            >
-              Delete<ion-icon name="trash"></ion-icon>
-            </button>
-          </div>
-        </ion-card>
+
+        </div>
       
     </form>
   </ion-card>
