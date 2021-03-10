@@ -23,4 +23,8 @@ export class DashboardPage implements OnInit {
     this.router.navigate(['view-cleaning-services']);
   }
 
+  toBusiness() {
+    this.router.navigate(['view-business'])
+  }
+
 }

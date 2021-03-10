@@ -123,6 +123,14 @@ const routes: Routes = [
     path: 'view-cleaning-services',
     loadChildren: () => import('./pages/owner/cleaning-services/view-cleaning-services/view-cleaning-services.module').then( m => m.ViewCleaningServicesPageModule)
   },
+  {
+    path: 'view-business',
+    loadChildren: () => import('./pages/owner/cleaning-services/view-business/view-business.module').then( m => m.ViewBusinessPageModule)
+  },
+  {
+    path: 'edit-business',
+    loadChildren: () => import('./pages/owner/cleaning-services/edit-business/edit-business.module').then( m => m.EditBusinessPageModule)
+  },
 
 
 

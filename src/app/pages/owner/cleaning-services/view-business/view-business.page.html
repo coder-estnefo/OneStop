@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cleaning-dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cleaning Business</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+
+  <ion-card class="business" *ngFor="let business of businesses">
+
+    <ion-card-header class="ion-card-header ion-text-center">
+      {{business.name}}
+    </ion-card-header>
+
+    <ion-slides pager="true" [options]="slideOpts" class="img-slide">
+      <ion-slide *ngFor="let image of business.images" class="business-img">
+        <img [src]="image" alt="a picture of {{business.name}}" />
+      </ion-slide>
+    </ion-slides>
+
+    <ion-icon name="location-outline"></ion-icon>
+    <ion-label class="address" *ngFor="let address of business.address">
+      {{address}}
+    </ion-label>
+
+    <button
+      type="button"
+      class="edit-btn"
+      (click)="editBusiness(business.id)"
+    >
+      edit <ion-icon name="create"></ion-icon>
+    </button>
+    <button
+      type="button"
+      class="delete-btn"
+      (click)="presentDeleteAlert(business.id, business.images)"
+    >
+      delete <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-card>
+
+</ion-content>

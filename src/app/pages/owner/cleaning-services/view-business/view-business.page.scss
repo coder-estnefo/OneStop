@@ -1,0 +1,96 @@
+$blue: #6ec4ba;
+$ligt-blue: #9ce9e0;
+$white: #ffffff;
+
+$box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+.business {
+  border-radius: 17px;
+  padding: 20px;
+  margin: 20px;
+  font-size: 18px;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.5) translateY(50);
+  }
+  10% {
+    opacity: 0.1;
+    transform: scale(0.1) translateY(90);
+  }
+}
+
+.business-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+  object-fit: fill;
+  object-position: inherit;
+}
+
+.icons-line {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.address {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.edit-btn {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 17px;
+  margin-top: 10px;
+  color: $white;
+  background-color: $blue;
+  box-shadow: $box-shadow;
+}
+
+.delete-btn {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 17px;
+  margin-top: 10px;
+  color: $white;
+  background-color: $blue;
+  box-shadow: $box-shadow;
+}
+
+.img-slide {
+  border-radius: 17px;
+  height: 200px;
+  width: 100%;
+  background-color: #d8d8d8;
+  animation: imgAnim 1s infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes imgAnim {
+  from {
+    background-color: #c0c0c0;
+  }
+  to {
+    background-color: #d8d8d8;
+  }
+}
