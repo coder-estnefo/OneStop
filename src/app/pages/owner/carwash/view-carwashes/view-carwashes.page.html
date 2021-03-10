@@ -14,6 +14,9 @@
 
 <ion-content color="light">
     <ion-card class="property" *ngFor="let carwash of carwashes">
+        <ion-card-header class="ion-card-header ion-text-center">
+            {{carwash.name}}
+        </ion-card-header>
         <ion-slides pager="true" [options]="slideOpts" class="img-slide">
             <ion-slide *ngFor="let image of carwash.images" class="property-img">
                 <img [src]="image" [alt]="carwash.description" />
