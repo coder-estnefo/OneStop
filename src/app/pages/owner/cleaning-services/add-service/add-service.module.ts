@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ViewCleaningServicesPageRoutingModule } from './view-cleaning-services-routing.module';
+import { AddServicePageRoutingModule } from './add-service-routing.module';
 
-import { ViewCleaningServicesPage } from './view-cleaning-services.page';
+import { AddServicePage } from './add-service.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { ViewCleaningServicesPage } from './view-cleaning-services.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ViewCleaningServicesPageRoutingModule
+    AddServicePageRoutingModule
   ],
-  declarations: [ViewCleaningServicesPage]
+  declarations: [AddServicePage]
 })
-export class ViewCleaningServicesPageModule {}
+export class AddServicePageModule {}

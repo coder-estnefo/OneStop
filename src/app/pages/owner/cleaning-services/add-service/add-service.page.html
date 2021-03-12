@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/view-business"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Service</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="add-card">
+    <ion-card-header class="ion-card-header ion-text-center heading">
+        Add Service
+    </ion-card-header>
+
+    <form [formGroup]="serviceForm">
+
+      <div class="form-control">
+        <label class="form-label">Type of Service</label>
+        <input type="text" placeholder="e.g house cleaning" formControlName="service" required />
+      </div>
+
+      <div class="form-control">
+        <label class="form-label">Price(in Rands)</label>
+        <input type="number" placeholder="e.g 180" formControlName="price" required />
+      </div>
+
+      <div class="form-control">
+        <label class="form-label">Description</label>
+        <textarea rows="4" formControlName="description" required></textarea>
+      </div>
+
+      <div class="form-control">
+        <label class="form-label" for="upload">Service Images/Logos</label>
+        <input 
+          id="upload" 
+          type="file" 
+          accept="image/*" 
+          formControlName="image" 
+          (change)="uploadFile($event)" 
+          required 
+        />
+      </div>
+
+      <div class="form-control">
+        <ion-button 
+          expand="full"
+          shape="round" 
+          class="add-btn" 
+          (click)="addService()" 
+          [disabled]="
+            serviceForm.controls.service.invalid || 
+            serviceForm.controls.service.invalid || 
+            isUpload">
+          Add Service <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </div>
+    
+    </form>
+  </ion-card>
+
+</ion-content>

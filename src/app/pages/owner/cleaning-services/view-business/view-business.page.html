@@ -45,6 +45,20 @@
     >
       delete <ion-icon name="trash"></ion-icon>
     </button>
+    <button
+      type="button"
+      class="edit-btn"
+      (click)="toAddService(business.id, business.ownerID)"
+    >
+      Add Service <ion-icon name="add-circle-outline"></ion-icon>
+    </button>
+    <button
+      type="button"
+      class="edit-btn"
+      (click)="toServices(business.id, business.ownerID)"
+    >
+      View Services <ion-icon name="eye-outline"></ion-icon>
+    </button>
   </ion-card>
 
 </ion-content>

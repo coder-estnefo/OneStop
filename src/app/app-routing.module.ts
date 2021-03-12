@@ -131,6 +131,10 @@ const routes: Routes = [
     path: 'edit-business',
     loadChildren: () => import('./pages/owner/cleaning-services/edit-business/edit-business.module').then( m => m.EditBusinessPageModule)
   },
+  {
+    path: 'add-service',
+    loadChildren: () => import('./pages/owner/cleaning-services/add-service/add-service.module').then( m => m.AddServicePageModule)
+  },
 
 
 

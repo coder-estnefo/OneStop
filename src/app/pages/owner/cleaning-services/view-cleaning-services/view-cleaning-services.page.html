@@ -9,17 +9,13 @@
 
 <ion-content color="light">
   
-  <ion-card class="service-item">
-    <img class="service-img" src="">
-    <div>
-      <h2>Service Name</h2>
-    </div>
-  </ion-card>
-
-  <ion-card class="add-card">
-    <ion-button shape="round" class="add-btn">
-      Add Service <ion-icon name="add"></ion-icon>
-    </ion-button>
-  </ion-card>
+  <div *ngIf="services">
+    <ion-card class="service-item" *ngFor="let service of services">
+      <img class="service-img" src="{{service.images[0]}}">
+      <div>
+        <h2>{{service.service}}</h2>
+      </div>
+    </ion-card>
+  </div>
 
 </ion-content>

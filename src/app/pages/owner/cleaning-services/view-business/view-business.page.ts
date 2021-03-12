@@ -93,4 +93,16 @@ export class ViewBusinessPage implements OnInit {
       this.router.navigate(['/login']);
     });
   }
+
+  toServices(id, userID) {
+    this.router.navigate(['view-cleaning-services'], {
+      queryParams: {id, userID}
+    })
+  }
+
+  toAddService(id, userID) {
+    this.router.navigate(['add-service'], {
+      queryParams: {id, userID}
+    })
+  }
 }

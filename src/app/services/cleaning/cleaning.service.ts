@@ -76,4 +76,40 @@ export class CleaningService {
         return this.storage.refFromURL(img).delete();
       });
   }
+
+  addService(details) {
+    const { 
+      businessID, 
+      ownerID,
+      service,
+      price,
+      description,
+      images
+    }  = details;
+
+    let serviceID = this.firestore.createId();
+
+    return this.firestore
+      .collection('Cleaning_Services')
+      .doc(businessID)
+      .collection('types_of_services')
+      .doc(serviceID)
+      .set({
+        businessID,
+        ownerID,
+        service,
+        price,
+        description,
+        serviceID,
+        images
+      });
+  }
+
+  getOwnerServices(userID, docID) {
+    return this.firestore
+      .collection('Cleaning_Services')
+      .doc(docID)
+      .collection('types_of_services', ref => ref.where('ownerID','==',userID))
+      .snapshotChanges();
+  }
 }
