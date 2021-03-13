@@ -15,6 +15,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
+  userInfor=[]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,7 +46,36 @@ export class LoginPage implements OnInit {
       .login(email, password)
       .then(() => {
 
-        let userID = firebase.auth().currentUser.uid;
+       let userID = firebase.auth().currentUser.uid;
+
+
+
+				this.firestore.collection("Owner").get().subscribe(response => {
+
+					response.forEach(fireData => {
+						let id = fireData.id;
+						console.log(id)
+						this.userInfor.push(id)
+
+					})
+
+
+
+					var existItem = this.userInfor.find(x => x == userID);
+
+					console.log(userID + "  " + existItem)
+
+					if (existItem) {
+
+						this.router.navigate(['/navigation']);
+					} else {
+						alert("user does not exist");
+            this.isLoading = false;
+						this.loginservice.logout();
+					}
+				})
+
+
 
         this.oneSignal.startInit('7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3', '482944391704');
 
