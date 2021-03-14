@@ -13,36 +13,5 @@
 </ion-header>
 
 <ion-content color="light">
-  <!-- <ion-card class="appointment-card">
-    <h2 class="address">Address</h2>
-    <p class="msg">
-      "Client name", would like to set an appointment to view this property on
-      the following date,
-    </p>
-    <h3 class="date">02/04/2021</h3>
-    <button type="button" class="btn" (click)="test()">Accept</button>
-    <button type="button" class="btn">Deny</button>
-  </ion-card> -->
-
-  <ion-list class="">
-    <ion-item-group>
-      <ion-item
-        button
-        *ngFor="let chat of propertyChats"
-        (click)="toMessages(chat)"
-      >
-        <ion-avatar slot="start" shape="round">
-          <img
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
-            alt=""
-          />
-        </ion-avatar>
-        <ion-label>
-          <!-- <h3>Itumeleng Tshabalala</h3> -->
-          <p>{{chat.message}}</p>
-        </ion-label>
-        <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
+  <ion-card class="appointment-card"> </ion-card>
 </ion-content>

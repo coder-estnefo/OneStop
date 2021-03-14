@@ -24,7 +24,6 @@ export class ViewAppointmentsPage implements OnInit {
     this.auth.authState.subscribe((user) => {
       if (user) {
         this.userID = user.uid;
-        this.getPropertiesChats();
       }
     });
   }
@@ -32,28 +31,6 @@ export class ViewAppointmentsPage implements OnInit {
   logout() {
     this.loginService.logout().then(() => {
       this.router.navigate(['/login']);
-    });
-  }
-
-  getPropertiesChats() {
-    this.propertyService.getChats(this.userID).subscribe((response) => {
-      this.propertyChats = response.map((chats) => {
-        return {
-          id: chats.payload.doc.id,
-          ...(chats.payload.doc.data() as Object),
-        };
-      });
-
-      const temp_chats = this.propertyChats.sort((a, b) => b.date - a.date);
-      this.propertyChats = temp_chats;
-      
-    });
-  }
-
-  toMessages(chat) {
-    const { id, to, from } = chat;
-    this.router.navigate(['messages'], {
-      queryParams: { propertyID: id, userID: to, sendTo: from },
     });
   }
 }

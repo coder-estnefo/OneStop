@@ -12,9 +12,10 @@
   <ion-card class="card" color="primary">
     <!-- <h2 class="card-label">Viewing Requests</h2>
     <h3 class="card-day">Today</h3> -->
-    <div class="badge red" routerLink="/view-appointments">
-      <h3 class="badge-count"><ion-icon name="chatbubbles-outline"></ion-icon></h3>
-      
+    <div class="badge red" routerLink="/property-chats">
+      <h3 class="badge-count">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+      </h3>
     </div>
   </ion-card>
   <ion-card class="card" color="primary">
@@ -23,8 +24,17 @@
       <h3 class="badge-count">{{propertiesCount}}</h3>
     </div>
     <div>
-      <button color="danger" type="button" class="add" routerLink="/add-property">Add</button>
-      <button type="button" class="view" routerLink="/view-properties">View</button>
+      <button
+        color="danger"
+        type="button"
+        class="add"
+        routerLink="/add-property"
+      >
+        Add
+      </button>
+      <button type="button" class="view" routerLink="/view-properties">
+        View
+      </button>
     </div>
   </ion-card>
 </ion-content>
