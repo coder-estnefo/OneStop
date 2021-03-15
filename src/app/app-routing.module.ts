@@ -175,7 +175,11 @@ const routes: Routes = [
       import('./pages/owner/property/chats/chats.module').then(
         (m) => m.ChatsPageModule
       ),
+  },  {
+    path: 'viewing-dates',
+    loadChildren: () => import('./pages/owner/property/viewing-dates/viewing-dates.module').then( m => m.ViewingDatesPageModule)
   },
+
 
   /* {
     path: 'login',
