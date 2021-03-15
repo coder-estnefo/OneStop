@@ -211,4 +211,22 @@ export class PropertyService {
   getChats(userID) {
     return this.firestore.collection('chats').doc(userID).collection('messages').snapshotChanges();
   }
+
+  setViewingDates(ownerID, dates) {
+    return this.firestore
+      .collection('Owner')
+      .doc(ownerID)
+      .collection('Property_Dates')
+      .add({
+        dates
+      })
+  }
+
+  getViewingDates(ownerID) {
+    return this.firestore
+      .collection('Owner')
+      .doc(ownerID)
+      .collection('Property_Dates')
+      .snapshotChanges(); 
+  }
 }
