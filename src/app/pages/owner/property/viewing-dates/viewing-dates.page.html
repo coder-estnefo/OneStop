@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/property-dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>viewing-dates</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+           
+          </ion-col>
+          <ion-col>
+            Day
+          </ion-col>
+          <ion-col>
+            From
+          </ion-col>
+          <ion-col>
+            To
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    
+    <ion-card *ngFor="let day of days">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-checkbox [checked]="day.checked" (ionChange)="test($event)"></ion-checkbox>
+          </ion-col>
+          <ion-col>
+            {{day.name}}
+          </ion-col>
+          <ion-col>
+            <input type="time" [value]="day.from">
+          </ion-col>
+          <ion-col>
+            <input type="time" [value]="day.to">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-button shape="round" expand="full" (click)="addDates()">
+      Add Dates
+    </ion-button>
+
+  </ion-card>
+
+</ion-content>
