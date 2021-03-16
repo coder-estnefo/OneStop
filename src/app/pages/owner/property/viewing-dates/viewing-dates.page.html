@@ -13,51 +13,42 @@
 </ion-header>
 
 <ion-content>
-
   <ion-card>
+    <div *ngIf="days">
+      <ion-card>
+        <ion-grid>
+          <ion-row>
+            <ion-col> </ion-col>
+            <ion-col> Day </ion-col>
+            <ion-col> From </ion-col>
+            <ion-col> To </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
 
-    <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-           
-          </ion-col>
-          <ion-col>
-            Day
-          </ion-col>
-          <ion-col>
-            From
-          </ion-col>
-          <ion-col>
-            To
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    
-    <ion-card *ngFor="let day of days">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-checkbox [checked]="day.checked" (ionChange)="test($event)"></ion-checkbox>
-          </ion-col>
-          <ion-col>
-            {{day.name}}
-          </ion-col>
-          <ion-col>
-            <input type="time" [value]="day.from">
-          </ion-col>
-          <ion-col>
-            <input type="time" [value]="day.to">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
+      <ion-card *ngFor="let day of days.days">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-checkbox
+                [checked]="day.checked"
+                (click)="setDay(day.day, day.checked)"
+              ></ion-checkbox>
+            </ion-col>
+            <ion-col> {{day.name}} </ion-col>
+            <ion-col>
+              <input type="time" [value]="day.from"/>
+            </ion-col>
+            <ion-col>
+              <input type="time" [value]="day.to" />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
 
-    <ion-button shape="round" expand="full" (click)="addDates()">
+    <!-- <ion-button shape="round" expand="full" (click)="addDates()">
       Add Dates
-    </ion-button>
-
+    </ion-button> -->
   </ion-card>
-
 </ion-content>

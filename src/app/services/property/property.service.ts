@@ -102,7 +102,7 @@ export class PropertyService {
       availability_status,
       favorite,
       propertyID,
-      name
+      name,
     } = property;
 
     return this.firestore.collection('Properties').doc(docID).set({
@@ -123,12 +123,9 @@ export class PropertyService {
 
   //update the visibility status
   changeVisibility(docID, status) {
-    return this.firestore
-      .collection('Properties')
-      .doc(docID)
-      .update({
-        availability_status: status
-      });
+    return this.firestore.collection('Properties').doc(docID).update({
+      availability_status: status,
+    });
   }
 
   //delete property
@@ -186,16 +183,11 @@ export class PropertyService {
   startChat(chat) {
     const { id, message, from, to, time, date } = chat;
     const chatID = this.setChatID(from, to) + id;
-    return this.firestore.collection('chats').doc(from).collection('messages').add({
-      id,
-      message,
-      from,
-      to,
-      time,
-      date,
-      chatID,
-    }).then(()=> {
-      return this.firestore.collection('chats').doc(to).collection('messages').add({
+    return this.firestore
+      .collection('chats')
+      .doc(from)
+      .collection('messages')
+      .add({
         id,
         message,
         from,
@@ -204,22 +196,41 @@ export class PropertyService {
         date,
         chatID,
       })
-    })
+      .then(() => {
+        return this.firestore
+          .collection('chats')
+          .doc(to)
+          .collection('messages')
+          .add({
+            id,
+            message,
+            from,
+            to,
+            time,
+            date,
+            chatID,
+          });
+      });
   }
 
   //get chats
   getChats(userID) {
-    return this.firestore.collection('chats').doc(userID).collection('messages').snapshotChanges();
+    return this.firestore
+      .collection('chats')
+      .doc(userID)
+      .collection('messages')
+      .snapshotChanges();
   }
 
-  setViewingDates(ownerID, dates) {
+  setViewingDates(ownerID, days) {
     return this.firestore
       .collection('Owner')
       .doc(ownerID)
       .collection('Property_Dates')
-      .add({
-        dates
-      })
+      .doc(ownerID)
+      .set({
+        days
+      });
   }
 
   getViewingDates(ownerID) {
@@ -227,6 +238,18 @@ export class PropertyService {
       .collection('Owner')
       .doc(ownerID)
       .collection('Property_Dates')
-      .snapshotChanges(); 
+      .doc(ownerID)
+      .snapshotChanges();
+  }
+
+  updateDates(ownerID, days) {
+    return this.firestore
+     .collection('Owner')
+      .doc(ownerID)
+      .collection('Property_Dates')
+      .doc(ownerID)
+      .update({
+        days
+      })
   }
 }
