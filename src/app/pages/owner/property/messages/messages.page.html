@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/view-appointments"></ion-back-button>
+      <ion-back-button defaultHref="/property-chats"></ion-back-button>
     </ion-buttons>
     <ion-title>messages</ion-title>
   </ion-toolbar>
@@ -37,6 +37,7 @@
             {{chat.message}}
             <br />
             <ion-button shape="round" (click)="addEvent(chat)">Add To Calendar</ion-button>
+            <br />
             <ion-text class="ion-text-right">{{chat.time}}</ion-text>
           </p>
         </ion-label>
