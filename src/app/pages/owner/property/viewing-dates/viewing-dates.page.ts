@@ -47,6 +47,13 @@ export class ViewingDatesPage implements OnInit {
     this.propertyService.setViewingDates(this.userID, newDays);
   }
 
+  updateTime(day, to, from) {
+    const newDays = this.days.days;
+    newDays[day].to = to;
+    newDays[day].from = from;
+    this.propertyService.setViewingDates(this.userID, newDays);
+  }
+
   getDays(ownerID) {
     this.propertyService.getViewingDates(ownerID).subscribe((response) => {
       this.days = response.payload.data();
