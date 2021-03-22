@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/view-business"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cleaning Days</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-card class="card">
+    <div *ngIf="days">
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row>
+            <ion-col> </ion-col>
+            <ion-col>
+              <ion-text class="header">Day</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="header">From</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="header">To</ion-text>
+            </ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <ion-card class="card" *ngFor="let day of days.days">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-checkbox size="1" class="card ion-text-left" [checked]="day.checked"
+                (click)="setDay(day.day, day.checked)"></ion-checkbox>
+            </ion-col>
+            <ion-col size="3.5" class="ion-text-left"> {{day.name}} </ion-col>
+            <ion-col class="ion-text-right">
+              <input type="time" [(ngModel)]="day.from" class="time" />
+            </ion-col>
+            <ion-col class="ion-text-right">
+              <input type="time" [(ngModel)]="day.to" class="time" />
+            </ion-col>
+            <ion-col class="ion-text-right">
+              <ion-button shape="round" size="small" class="ion-no-padding"
+                (click)="updateTime(day.day, day.to, day.from)">
+                <ion-icon name="time-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+
+  </ion-card>
+</ion-content>

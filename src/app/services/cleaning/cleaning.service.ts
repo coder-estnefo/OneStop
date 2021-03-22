@@ -112,4 +112,35 @@ export class CleaningService {
       .collection('types_of_services', ref => ref.where('ownerID','==',userID))
       .snapshotChanges();
   }
+
+  setViewingDates(ownerID, days) {
+    return this.firestore
+      .collection('Owner')
+      .doc(ownerID)
+      .collection('Cleaning_Dates')
+      .doc(ownerID)
+      .set({
+        days
+      });
+  }
+
+  getViewingDates(ownerID) {
+    return this.firestore
+      .collection('Owner')
+      .doc(ownerID)
+      .collection('Cleaning_Dates')
+      .doc(ownerID)
+      .snapshotChanges();
+  }
+
+  updateDates(ownerID, days) {
+    return this.firestore
+     .collection('Owner')
+      .doc(ownerID)
+      .collection('Cleaning_Dates')
+      .doc(ownerID)
+      .update({
+        days
+      })
+  }
 }

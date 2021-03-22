@@ -30,35 +30,44 @@
     <ion-label class="address" *ngFor="let address of business.address">
       {{address}}
     </ion-label>
-
-    <button
-      type="button"
-      class="edit-btn"
-      (click)="editBusiness(business.id)"
-    >
-      edit <ion-icon name="create"></ion-icon>
-    </button>
-    <button
-      type="button"
-      class="delete-btn"
-      (click)="presentDeleteAlert(business.id, business.images)"
-    >
-      delete <ion-icon name="trash"></ion-icon>
-    </button>
-    <button
-      type="button"
-      class="edit-btn"
-      (click)="toAddService(business.id, business.ownerID)"
-    >
-      Add Service <ion-icon name="add-circle-outline"></ion-icon>
-    </button>
-    <button
-      type="button"
-      class="edit-btn"
-      (click)="toServices(business.id, business.ownerID)"
-    >
-      View Services <ion-icon name="eye-outline"></ion-icon>
-    </button>
+    
   </ion-card>
+
+  <div *ngFor="let business of businesses">
+    <ion-card class="card">
+      <ion-text class="heading">Edit Business Details</ion-text>
+      <ion-button shape="round" expand="full" strong="true" (click)="editBusiness(business.id)">
+        edit <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-card>
+    
+    <ion-card class="card">
+      <ion-text class="heading">Delete Business</ion-text>
+      <ion-button shape="round" expand="full" strong="true" (click)="presentDeleteAlert(business.id, business.images)">
+        delete <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-card>
+    
+    <ion-card class="card">
+      <ion-text class="heading">Add Cleaning Service</ion-text>
+      <ion-button shape="round" expand="full" strong="true" (click)="toAddService(business.id, business.ownerID)">
+        Add Service <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-card>
+    
+    <ion-card class="card">
+      <ion-text class="heading">View Cleaning Services</ion-text>
+      <ion-button shape="round" expand="full" strong="true" (click)="toServices(business.id, business.ownerID)">
+        View Services <ion-icon name="eye-outline"></ion-icon>
+      </ion-button>
+    </ion-card>
+    
+    <ion-card class="card">
+      <ion-text class="heading">View Working Days</ion-text>
+      <ion-button shape="round" expand="full" strong="true" (click)="toDays()">
+        Working Days <ion-icon name="calendar-outline"></ion-icon>
+      </ion-button>
+    </ion-card>
+  </div>
 
 </ion-content>

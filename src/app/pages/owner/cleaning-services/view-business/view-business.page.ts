@@ -33,7 +33,8 @@ export class ViewBusinessPage implements OnInit {
             ...business.payload.doc.data() as Object
           })
         })
-        console.log(user.uid)
+        console.log(user.uid);
+        console.log(this.businesses);
       })
     })
   }
@@ -104,5 +105,9 @@ export class ViewBusinessPage implements OnInit {
     this.router.navigate(['add-service'], {
       queryParams: {id, userID}
     })
+  }
+
+  toDays() {
+    this.router.navigate(['cleaning-days']);
   }
 }

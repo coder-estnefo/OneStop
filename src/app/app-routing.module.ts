@@ -179,6 +179,10 @@ const routes: Routes = [
     path: 'viewing-dates',
     loadChildren: () => import('./pages/owner/property/viewing-dates/viewing-dates.module').then( m => m.ViewingDatesPageModule)
   },
+  {
+    path: 'cleaning-days',
+    loadChildren: () => import('./pages/owner/cleaning-services/cleaning-days/cleaning-days.module').then( m => m.CleaningDaysPageModule)
+  },
 
 
   /* {
