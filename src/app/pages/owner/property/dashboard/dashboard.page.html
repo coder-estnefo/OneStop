@@ -1,17 +1,122 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card routerLink="/view-properties" color="primary">
+                    <ion-item color="primary">
+                        <ion-card-title>View</ion-card-title>
+                        <ion-icon slot="end" name="eye-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card routerLink="/add-property">
+                    <ion-item>
+                        <ion-card-title>Add</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="add-circle-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-card>
+                    <ion-item>
+                        <ion-card-title>Add</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="add-circle-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card (click)="toDates()">
+                    <ion-item>
+                        <ion-card-title>Set date</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="add-circle-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+
+            <ion-col>
+                <ion-card routerLink="/property-chats">
+                    <ion-item>
+                        <ion-card-title>Chat</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="chatbubbles-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-card>
+
+                                        <ion-item>
+                                            <ion-label class="ion-left-padding">4</ion-label>
+                                            <ion-icon color="primary" name="mail-unread-outline"></ion-icon>
+                                        </ion-item>
+
+                                    </ion-card>
+
+                                </ion-col>
+                                <ion-col>
+
+                                    <ion-card>
+                                        <ion-item>
+                                            <ion-label class="ion-left-padding">4</ion-label>
+                                            <ion-icon color="primary" name="mail-open-outline"></ion-icon>
+                                        </ion-item>
+
+                                    </ion-card>
+
+                                </ion-col>
+
+                            </ion-row>
+                        </ion-grid>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>
+
+<!-- 
 <ion-content color="light">
   <ion-card class="card" color="primary">
     <!-- <h2 class="card-label">Viewing Requests</h2>
-    <h3 class="card-day">Today</h3> -->
+    <h3 class="card-day">Today</h3> --
     <div class="badge red" routerLink="/property-chats">
       <h3 class="badge-count">
         <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -45,3 +150,4 @@
   </ion-card>
 
 </ion-content>
+ -->
