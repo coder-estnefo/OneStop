@@ -110,4 +110,8 @@ export class ViewBusinessPage implements OnInit {
   toDays() {
     this.router.navigate(['cleaning-days']);
   }
+
+  toChats() {
+    this.router.navigate(['cleaning-chats']);
+  }
 }

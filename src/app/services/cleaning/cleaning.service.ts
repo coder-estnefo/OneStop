@@ -143,4 +143,72 @@ export class CleaningService {
         days
       })
   }
+
+  setChatID(uid1, uid2) {
+    if (uid1 < uid2) {
+      return uid1 + uid2;
+    } else {
+      return uid2 + uid1;
+    }
+  }
+
+  startChat(chat) {
+    const { 
+      id, 
+      message, 
+      from, 
+      to, 
+      time, 
+      date, 
+      cleaningName, 
+      requestDate, 
+      requestType, 
+      serviceRequest 
+    } = chat;
+    const chatID = this.setChatID(from, to) + id;
+    return this.firestore
+      .collection('chats')
+      .doc(from)
+      .collection('messages')
+      .add({
+        id,
+        message,
+        from,
+        to,
+        time,
+        date,
+        chatID,
+        cleaningName,
+        requestDate,
+        requestType,
+        serviceRequest
+      })
+      .then(() => {
+        return this.firestore
+          .collection('chats')
+          .doc(to)
+          .collection('messages')
+          .add({
+            id,
+            message,
+            from,
+            to,
+            time,
+            date,
+            chatID,
+            cleaningName,
+            requestDate,
+            requestType,
+            serviceRequest
+          });
+      });
+  }
+
+  getChats(userID) {
+    return this.firestore
+      .collection('chats')
+      .doc(userID)
+      .collection('messages', ref => ref.where('requestType','==','cleaning'))
+      .snapshotChanges();
+  }
 }

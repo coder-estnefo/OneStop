@@ -32,13 +32,11 @@
         (click)="toMessages(chat)"
       >
         <ion-avatar slot="start" shape="round">
-          <img
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
-            alt=""
-          />
+          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
         </ion-avatar>
         <ion-label>
-          <!-- <h3>Itumeleng Tshabalala</h3> -->
+          <h3 *ngIf="chat.propertyName !=undefined">{{chat.propertyName}}</h3>
+          <h3 *ngIf="chat.cleaningName !=undefined">{{chat.cleaningName}}</h3>
           <p>{{chat.message}}</p>
         </ion-label>
         <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>

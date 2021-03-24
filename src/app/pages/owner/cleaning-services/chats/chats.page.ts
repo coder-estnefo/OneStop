@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { PropertyService } from 'src/app/services/property/property.service';
 
 @Component({
   selector: 'app-chats',
@@ -11,12 +11,12 @@ import { PropertyService } from 'src/app/services/property/property.service';
 })
 export class ChatsPage implements OnInit {
   userID;
-  propertyChats = [];
+  cleaningChats = [];
 
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private propertyService: PropertyService,
+    private cleaningService: CleaningService,
     private auth: AngularFireAuth
   ) {}
 
@@ -36,35 +36,25 @@ export class ChatsPage implements OnInit {
   }
 
   getPropertiesChats() {
-    this.propertyService.getChats(this.userID).subscribe((response) => {
-      this.propertyChats = response.map((chats) => {
+    this.cleaningService.getChats(this.userID).subscribe((response) => {
+      this.cleaningChats = response.map((chats) => {
         return {
           id: chats.payload.doc.id,
           ...(chats.payload.doc.data() as Object),
         };
       });
 
-      const temp_chats = this.propertyChats.sort((a, b) => b.date - a.date);
-      this.propertyChats = temp_chats;
-
-      const result = [];
-      const map = new Map();
-      for (const item of this.propertyChats) {
-          if(!map.has(item.chatID)){
-              map.set(item.chatID, true);    // set any value to Map
-              result.push({
-                ...item
-              });
-            }
-        }
-        this.propertyChats = result;
+      const temp_chats = this.cleaningChats.sort((a, b) => b.date - a.date);
+      this.cleaningChats = temp_chats;
     });
   }
 
   toMessages(chat) {
     const { id, to, from } = chat;
-    this.router.navigate(['messages'], {
-      queryParams: { propertyID: id, userID: to, sendTo: from },
+    this.router.navigate(['cleaning-messages'], {
+      // queryParams: { propertyID: id, userID: to, sendTo: from },
+      queryParams: { id: id, userID: to, sendTo: from },
     });
   }
+
 }

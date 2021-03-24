@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PropertyService } from 'src/app/services/property/property.service';
 import { Calendar } from '@ionic-native/calendar/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 
 @Component({
   selector: 'app-messages',
@@ -10,15 +10,16 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
   styleUrls: ['./messages.page.scss'],
 })
 export class MessagesPage implements OnInit {
+
   userID;
-  propID;
+  cleaningID;
   sendTo;
   chats = [];
   text;
 
   constructor(
     private route: ActivatedRoute,
-    private propertyService: PropertyService,
+    private cleaningService: CleaningService,
     private oneSignal: OneSignal,
     private calendar: Calendar
   ) {}
@@ -29,16 +30,17 @@ export class MessagesPage implements OnInit {
     );
     this.route.queryParams.subscribe((param) => {
       this.userID = param.userID;
-      this.propID = param.propertyID;
+      this.cleaningID = param.id;
       this.sendTo = param.sendTo;
 
-      this.propertyService.getChats(this.userID).subscribe((response) => {
+      this.cleaningService.getChats(this.userID).subscribe((response) => {
       this.chats = response.map((chats) => {
         return {
           id: chats.payload.doc.id,
           ...(chats.payload.doc.data() as Object),
         };
       });
+      console.log(this.chats);
       
       this.chats = this.chats.filter((chat) => {
         return (
@@ -48,7 +50,7 @@ export class MessagesPage implements OnInit {
       });
 
       const temp_chats = this.chats
-        .filter((chats) => chats.id === this.propID)
+        .filter((chats) => chats.id === this.cleaningID)
         .sort((a, b) => a.date - b.date);
       this.chats = temp_chats;
       console.log(this.chats);
@@ -63,15 +65,16 @@ export class MessagesPage implements OnInit {
       const date = new Date();
       const time = date.getHours() + ':' + date.getMinutes();
       const chat = {
-        id: this.propID,
+        id: this.cleaningID,
         from: this.userID,
         to: this.sendTo,
         message: this.text,
         time: time,
         date: date,
+        requestType: 'cleaning'
       };
 
-      this.propertyService.startChat(chat).then(() => {
+      this.cleaningService.startChat(chat).then(() => {
         this.text = '';
       });
     }
@@ -80,28 +83,20 @@ export class MessagesPage implements OnInit {
 
   addEvent(chat) {
     console.log(chat);
-    let dt = chat.appointmentDate;
-    let dd = dt.slice(0,2);
-    let mm = dt.slice(3,5);
-    let yyyy = dt.slice(6,10);
-    let time = dt.slice(11);
-    let newDate = yyyy + "/" + mm + "/" + dd +" " + time;
-    let startdate = new Date(newDate);
-    let newDateEnd = new Date(newDate);
-    let enddate = new Date(newDateEnd.setMinutes(newDateEnd.getMinutes() + 30));
-
+    //let startdate = new Date(chat.appointmentDate);
+    //let enddate = startdate.setMinutes(startdate.getMinutes() + 30);
+    let startdate = new Date();
+    let enddate = new Date();
     let options = { 
-      calendername: "Viewing Appointment", 
+      calendername: "Cleaning Request" + chat.serviceRequest.address, 
       url: '', 
-      firstReminderMinute: 15 
+      firstReminderMinute: 30 
     };
 
     this.calendar
-      .createEventInteractivelyWithOptions('Viewing appointment', chat.propertyName, '',startdate, enddate, options)
+      .createEventInteractivelyWithOptions('new event', chat.propertyName, 'notes',startdate, enddate, options)
       .then(()=>{
-        alert("Event is set");
-        this.text = "Appointment Date Accepted for: " + dt;
-        this.sendMessage();
+        //alert("Event is set");
       })
   }
 
@@ -113,4 +108,5 @@ export class MessagesPage implements OnInit {
       alert("event deleted");
     })
   }
+
 }

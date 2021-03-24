@@ -175,13 +175,22 @@ const routes: Routes = [
       import('./pages/owner/property/chats/chats.module').then(
         (m) => m.ChatsPageModule
       ),
-  },  {
+  },
+  {
     path: 'viewing-dates',
     loadChildren: () => import('./pages/owner/property/viewing-dates/viewing-dates.module').then( m => m.ViewingDatesPageModule)
   },
   {
     path: 'cleaning-days',
     loadChildren: () => import('./pages/owner/cleaning-services/cleaning-days/cleaning-days.module').then( m => m.CleaningDaysPageModule)
+  },
+  {
+    path: 'cleaning-chats',
+    loadChildren: () => import('./pages/owner/cleaning-services/chats/chats.module').then( m => m.ChatsPageModule)
+  },
+  {
+    path: 'cleaning-messages',
+    loadChildren: () => import('./pages/owner/cleaning-services/messages/messages.module').then( m => m.MessagesPageModule)
   },
 
 

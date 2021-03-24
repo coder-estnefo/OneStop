@@ -30,7 +30,7 @@
     <ion-label class="address" *ngFor="let address of business.address">
       {{address}}
     </ion-label>
-    
+
   </ion-card>
 
   <div *ngFor="let business of businesses">
@@ -66,6 +66,13 @@
       <ion-text class="heading">View Working Days</ion-text>
       <ion-button shape="round" expand="full" strong="true" (click)="toDays()">
         Working Days <ion-icon name="calendar-outline"></ion-icon>
+      </ion-button>
+    </ion-card>
+
+    <ion-card class="card">
+      <ion-text class="heading">View Chats</ion-text>
+      <ion-button shape="round" expand="full" strong="true" (click)="toChats()">
+        Chats <ion-icon name="chatbubble-outline"></ion-icon>
       </ion-button>
     </ion-card>
   </div>

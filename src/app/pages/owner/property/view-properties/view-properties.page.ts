@@ -119,7 +119,7 @@ export class ViewPropertiesPage implements OnInit {
     return this.propertyService
       .changeVisibility(docID, visibility)
       .then(()=> {
-        this.presentToast();
+        //this.presentToast();
       })
   }
 
