@@ -69,7 +69,7 @@ export class LoginPage implements OnInit {
 
 						this.router.navigate(['/navigation']);
 					} else {
-						alert("user does not exist");
+						this.presentAlert('This email cannot be used for this Account');
             this.isLoading = false;
 						this.loginservice.logout();
 					}
