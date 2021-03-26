@@ -9,8 +9,8 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
-    <ion-card class="main-card">
+<ion-content>
+    <!-- <ion-card class="main-card">
         <ion-card class="property-card" routerLink="/property-dashboard" color="primary">
             <h2>Property</h2>
         </ion-card>
@@ -20,5 +20,75 @@
         <ion-card class="events-card" routerLink="/cleaning-dashboard" color="danger">
             <h2>Cleaning Services</h2>
         </ion-card>
-    </ion-card>
+    </ion-card> -->
+
+    <ion-grid class="ion-padding">
+        <ion-row>
+            <ion-col size="12">
+                <ion-card class="card property-dashboard" (click)="gotoProperties()">
+                    <ion-card-content class="ion-text-center">
+                        <h2 class=""><span class="title">{{totalProperties}}</span> Apartments</h2>
+                        <!-- <ion-grid>
+                            <ion-row>
+                                <ion-col size="6" class="ion-text-left">
+                                    <ion-card-title class="title">{{this.totalProperties}}</ion-card-title>
+                                    <ion-card-subtitle>Apartments</ion-card-subtitle>
+                                </ion-col>
+                                <ion-col size="6" class="ion-text-right">
+                                    <ion-card-title class="total_fav">{{totalFavoriteProperties}}</ion-card-title>
+                                    <ion-card-subtitle>Favorite</ion-card-subtitle>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid> -->
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <ion-card class="card carwash-dashboard" (click)="gotoCarwash()">
+                    <ion-card-content class="ion-text-center">
+                        <h2 class=""><span class="title">{{totalCarWashes}}</span> Car Wash</h2>
+                        <!-- <ion-grid>
+                            <ion-row>
+                                <ion-col size="6" class="ion-text-left">
+                                    <ion-card-title class="title">{{this.totalCarWashes}}</ion-card-title>
+                                    <ion-card-subtitle>Car Wash</ion-card-subtitle>
+                                </ion-col>
+                                <ion-col size="6" class="ion-text-right">
+                                    <ion-card-title class="total_fav">{{totalFavoriteCarwashes}}</ion-card-title>
+                                    <ion-card-subtitle>Favorite</ion-card-subtitle>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid> -->
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+            <ion-col size="12">
+                <ion-card class="card cleaning-dashboard" (click)="gotoCleaningServices()">
+                    <ion-card-content class="ion-text-center">
+                        <h2 class=""><span class="title">{{totalCleaningServices}}</span> Cleaning Services</h2>
+                        <!-- <ion-grid>
+                            <ion-row>
+                                <ion-col size="6" class="ion-text-left">
+                                    <ion-card-title class="title">{{totalCleaningServices}}</ion-card-title>
+                                    <ion-card-subtitle>Services</ion-card-subtitle>
+                                </ion-col>
+                                <ion-col size="6" class="ion-text-right">
+                                    <ion-card-title class="total_fav">{{totalFavoriteCleaning}}</ion-card-title>
+                                    <ion-card-subtitle>Favorite</ion-card-subtitle>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid> -->
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
 </ion-content>
