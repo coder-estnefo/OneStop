@@ -91,10 +91,11 @@
         </div>
 
         <div class="form-control">
-          <input
-            type="button"
+          <ion-button
+            shape="round"
+            expand="full"
+            strong="true"
             (click)="update()"
-            value="Update"
             [disabled]="
               propertyForm.controls.name.invalid ||
               propertyForm.controls.location.invalid ||  
@@ -104,7 +105,9 @@
               propertyForm.controls.garages.invalid || 
               propertyForm.controls.description.invalid 
             "
-          />
+          >
+            update
+          </ion-button>
         </div>
       </div>
 
@@ -154,12 +157,15 @@
         </div>
 
         <div class="form-control">
-          <input
-            type="submit"
-            value="Update"
+          <ion-button
+            shape="round"
+            expand="full"
+            strong="true"
             (click)="update()"
             [disabled]="imageUpload"
-          />
+          >
+            update
+          </ion-button>
         </div>
       </div>
     </form>

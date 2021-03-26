@@ -65,7 +65,7 @@
           </div>
 
           <div class="form-control">
-            <label class="form-label">Area Code</label>
+            <label class="form-label">Postal Code</label>
             <input 
               type="text" 
               placeholder="" 
@@ -120,10 +120,10 @@
           <textarea rows="4" formControlName="description" required></textarea>
         </div>
         <div class="form-control">
-          <input
-            type="button"
+          <ion-button
+            shape="round"
+            expand="full"
             (click)="continue()"
-            value="Continue"
             [disabled]="
               propertyForm.controls.name.invalid ||
               propertyForm.controls.location.invalid ||
@@ -133,7 +133,9 @@
               propertyForm.controls.garages.invalid || 
               propertyForm.controls.description.invalid 
             "
-          />
+          >
+            Continue
+          </ion-button>
         </div>
       </div>
 
@@ -164,12 +166,14 @@
         </div>
 
         <div class="form-control">
-          <input
-            type="submit"
-            value="Upload"
+          <ion-button
+            shape="round"
+            expand="full"
             (click)="upload()"
             [disabled]="propertyForm.invalid || isUpload"
-          />
+          >
+            Upload
+          </ion-button>
         </div>
       </div>
     </form>

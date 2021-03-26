@@ -46,19 +46,21 @@
       <!-- <span>show more</span> -->
     </p>
 
-    <button
-      type="button"
-      class="edit-btn"
+    <ion-button
+      shape="round"
+      expand="full"
+      strong="true"
       (click)="editProperty(property.docID)"
     >
       edit <ion-icon name="create"></ion-icon>
-    </button>
-    <button
-      type="button"
-      class="delete-btn"
+    </ion-button>
+    <ion-button
+      shape="round"
+      expand="full"
+      strong="true"
       (click)="presentDeleteAlert(property.docID, property.images)"
     >
       delete <ion-icon name="trash"></ion-icon>
-    </button>
+    </ion-button>
   </ion-card>
 </ion-content>
