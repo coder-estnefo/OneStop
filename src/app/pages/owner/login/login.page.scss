@@ -4,13 +4,13 @@ $white: #ffffff;
 $black: #000000;
 
 .login-card {
-  height: 100%;
-  padding: 10px 20px;
+  padding: 10px 30px;
   color: $black;
 }
 
 .login-card h2 {
-  font-weight: 600;
+  text-align: center;
+  // font-weight: 600;
 }
 
 .form-control {
@@ -20,7 +20,7 @@ $black: #000000;
 }
 
 .input-label {
-  font-weight: 600;
+  // font-weight: 600;
   display: block;
 }
 
@@ -60,4 +60,19 @@ button[type="submit"]:disabled {
 
 .ng-invalid:not(form) {
   border: 2px solid #a94442; /* red */
+}
+
+img {
+  width: 80%;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.label {
+  font-size: 12px;
+}
+
+a {
+  font-size: 12px;
+  text-decoration: none;
 }

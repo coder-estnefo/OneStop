@@ -1,11 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registration</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="register-card">
+  <div class="register-card">
     <h2>Owner Registration</h2>
     <form [formGroup]="registerForm">
       <div class="form-control">
@@ -49,8 +52,9 @@
         />
       </div>
       <div class="form-control">
-        <button
-          type="submit"
+        <ion-button
+          shape="round"
+          expand="full"
           [disabled]="registerForm.invalid || isLoading"
           (click)="register()"
         >
@@ -58,9 +62,22 @@
           <span [hidden]="!isLoading">
             <ion-spinner name="bubbles"></ion-spinner>
           </span>
-        </button>
+        </ion-button>
       </div>
     </form>
-    <p>Registered? <a routerLink="/login">login</a></p>
-  </ion-card>
+    
+    <ion-grid class="ion-padding-top ion-text-center">
+      <ion-row>
+          <ion-col size="8">
+              <ion-label class="label ion-no-padding">
+                  ALREADY HAVE AN ACCOUNT?
+              </ion-label>
+          </ion-col>
+          <ion-col size="4">
+              <a routerLink="/login" color="primary" class="a ion-no-padding">LOGIN</a>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  </div>
 </ion-content>
