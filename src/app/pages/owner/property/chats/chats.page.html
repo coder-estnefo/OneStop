@@ -1,19 +1,19 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/property-dashboard"></ion-back-button>
-    </ion-buttons>
-    <ion-title></ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/property-dashboard"></ion-back-button>
+        </ion-buttons>
+        <ion-title></ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline" style="font-size: 32px"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
-  <!-- <ion-card class="appointment-card">
+    <!-- <ion-card class="appointment-card">
     <h2 class="address">Address</h2>
     <p class="msg">
       "Client name", would like to set an appointment to view this property on
@@ -24,23 +24,20 @@
     <button type="button" class="btn">Deny</button>
   </ion-card> -->
 
-  <ion-list class="">
-    <ion-item-group>
-      <ion-item
-        button
-        *ngFor="let chat of propertyChats"
-        (click)="toMessages(chat)"
-      >
-        <ion-avatar slot="start" shape="round">
-          <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-          <h3 *ngIf="chat.propertyName !=undefined">{{chat.propertyName}}</h3>
-          <h3 *ngIf="chat.cleaningName !=undefined">{{chat.cleaningName}}</h3>
-          <p>{{chat.message}}</p>
-        </ion-label>
-        <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
+    <ion-list class="">
+        <ion-item-group>
+            <ion-item button *ngFor="let chat of propertyChats" (click)="toMessages(chat)">
+                <ion-avatar slot="start" shape="round">
+                    <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+                </ion-avatar>
+                <ion-label>
+                    <h3 *ngIf="chat.propertyName !=undefined">{{chat.propertyName}}</h3>
+                    <h3 *ngIf="chat.cleaningName !=undefined">{{chat.cleaningName}}</h3>
+                    <p>{{chat.message}}</p>
+                </ion-label>
+                <ion-badge shape="round" slot="end">{{chat.time}}</ion-badge>
+            </ion-item>
+        </ion-item-group>
+    </ion-list>
+
 </ion-content>

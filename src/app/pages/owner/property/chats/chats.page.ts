@@ -12,6 +12,7 @@ import { PropertyService } from 'src/app/services/property/property.service';
 export class ChatsPage implements OnInit {
   userID;
   propertyChats = [];
+  
 
   constructor(
     private router: Router,
@@ -27,6 +28,8 @@ export class ChatsPage implements OnInit {
         this.getPropertiesChats();
       }
     });
+
+   
   }
 
   logout() {

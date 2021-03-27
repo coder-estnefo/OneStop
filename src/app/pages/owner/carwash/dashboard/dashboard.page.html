@@ -9,10 +9,117 @@
 </ion-header>
 
 
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card routerLink="/view-carwashes" color="primary">
+                    <ion-item color="primary">
+                        <ion-card-title>View</ion-card-title>
+                        <ion-icon slot="end" name="eye-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+                        <ion-card-subtitle>Car wash</ion-card-subtitle>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card routerLink="/add-carwash">
+                    <ion-item>
+                        <ion-card-title>Add</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="add-circle-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+                        <ion-card-subtitle>Car wash</ion-card-subtitle>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+
+            <ion-col>
+                <ion-card>
+                    <ion-item>
+                        <ion-card-title>Set Prices</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="add-circle-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+                        <ion-card-subtitle>Pricing</ion-card-subtitle>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+
+            <ion-col>
+                <ion-card (click)="toDates()">
+                    <ion-item>
+                        <ion-card-title>Set date</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="add-circle-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+                        <ion-card-subtitle>Set slots</ion-card-subtitle>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+
+            <ion-col>
+                <ion-card>
+                    <ion-item>
+                        <ion-card-title>Chat</ion-card-title>
+                        <ion-icon color="primary" slot="end" name="chatbubbles-outline"></ion-icon>
+                    </ion-item>
+                    <ion-card-content>
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-card>
+
+                                        <ion-item>
+                                            <ion-label class="ion-left-padding">4</ion-label>
+                                            <ion-icon color="primary" name="mail-unread-outline"></ion-icon>
+                                        </ion-item>
+
+                                    </ion-card>
+
+                                </ion-col>
+                                <ion-col>
+
+                                    <ion-card>
+                                        <ion-item>
+                                            <ion-label class="ion-left-padding">{{3}}</ion-label>
+                                            <ion-icon color="primary" name="mail-open-outline"></ion-icon>
+                                        </ion-item>
+
+                                    </ion-card>
+
+                                </ion-col>
+
+                            </ion-row>
+                        </ion-grid>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>
+
+
+
+
+<!--  
 <ion-content color="light">
     <ion-card class="card" color="primary">
         <!-- <h2 class="card-label">Viewing Requests</h2>
-    <h3 class="card-day">Today</h3> -->
+    <h3 class="card-day">Today</h3> --
         <div class="badge red">
             <h3 class="badge-count">
                 <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -20,6 +127,7 @@
 
         </div>
     </ion-card>
+
     <ion-card class="card" color="primary">
         <h2 class="card-label">Carwash</h2>
         <div class="badge red" routerLink="/view-carwashes">
@@ -31,3 +139,4 @@
         </div>
     </ion-card>
 </ion-content>
+-->

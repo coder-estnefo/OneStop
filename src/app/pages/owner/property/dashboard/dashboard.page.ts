@@ -11,6 +11,7 @@ import { PropertyService } from 'src/app/services/property/property.service';
 })
 export class DashboardPage implements OnInit {
   propertiesCount = 0;
+  propertyChats=[];
 
   constructor(
     private auth: AngularFireAuth,
@@ -22,6 +23,7 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.auth.authState.subscribe((user) => {
       let userID = user.uid;
+      this.getPropertiesChats(userID)
       this.propertyService
         .getOwnerProperties(userID)
         .subscribe((properties) => {
@@ -29,6 +31,23 @@ export class DashboardPage implements OnInit {
         });
     });
   }
+
+
+  getPropertiesChats(userID) {
+    this.propertyService.getChats(userID).subscribe((response) => {
+      this.propertyChats = response.map((chats) => {
+        return {
+          id: chats.payload.doc.id,
+          ...(chats.payload.doc.data() as Object),
+        };
+      });
+
+      
+    })   
+  }
+
+
+
 
   toDates() {
     this.router.navigate(['/viewing-dates'])
