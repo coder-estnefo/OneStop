@@ -31,7 +31,7 @@
     <div>
       <ion-toggle 
         [(ngModel)]="property.availability_status"
-        (click)="switchVisibility(property.docID, property.availability_status)"
+        (click)="presentVisibilityAlert(property.docID, property.availability_status)"
         [checked]="property.availability_status"
       >
       </ion-toggle>

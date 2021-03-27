@@ -130,5 +130,40 @@ export class ViewPropertiesPage implements OnInit {
     });
     toast.present();
   }
+
+  async presentVisibilityAlert(docID, status) {
+    let value;
+    if (status) {
+      value = 'OFF';
+    } else {
+      value = 'ON';
+    }
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class alert-wrapper',
+      message: `
+        <h1>Confirm Change</h1>
+        <p>
+          Are you sure you want to turn the turn visibility <b>${value}</b> for this property?
+        </p>
+        `,
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            let temp_status = !status;
+            this.switchVisibility(docID, temp_status);
+          },
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.switchVisibility(docID, status);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
   
 }
