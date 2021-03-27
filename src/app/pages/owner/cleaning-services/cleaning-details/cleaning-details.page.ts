@@ -33,7 +33,7 @@ export class CleaningDetailsPage implements OnInit {
       address: this.formBuilder.array([
         ['', [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
         ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
-        ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[A-Z a-z -]+$')]],
         ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       ]),
       cleanersImages: this.formBuilder.array([this.formBuilder.control('')]),

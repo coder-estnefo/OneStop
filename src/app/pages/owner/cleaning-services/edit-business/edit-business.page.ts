@@ -66,7 +66,7 @@ export class EditBusinessPage implements OnInit {
             address: this.formBuilder.array([
               [ address[0], [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
               [ address[1], [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
-              [ address[2], [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+              [ address[2], [Validators.required, Validators.pattern('^[A-Z a-z -]+$')]],
               [ address[3], [Validators.required, Validators.pattern('^[0-9]+$')]],
             ]),
             cleanersImages: this.formBuilder.array([this.formBuilder.control('')]),

@@ -84,7 +84,7 @@ export class EditPropertyPage implements OnInit {
               ],
               [
                 location[2], 
-                [Validators.required, Validators.pattern('^[A-Z a-z]+$')]
+                [Validators.required, Validators.pattern('^[A-Z a-z -]+$')]
               ],
               [
                 location[3], 

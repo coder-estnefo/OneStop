@@ -38,7 +38,7 @@ export class AddCarwashPage implements OnInit {
       location: this.formBuilder.array([
         ['', [Validators.required, Validators.pattern('^[0-9 A-Z a-z]+$')]],
         ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
-        ['', [Validators.required, Validators.pattern('^[A-Z a-z]+$')]],
+        ['', [Validators.required, Validators.pattern('^[A-Z a-z -]+$')]],
         ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       ]),
       description: [
