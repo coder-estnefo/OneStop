@@ -84,11 +84,24 @@ export class LoginPage implements OnInit {
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
 
         this.oneSignal.handleNotificationReceived().subscribe(() => {
-          alert('notification received')
+          //alert('notification received')
         });
 
-        this.oneSignal.handleNotificationOpened().subscribe(() => {
-          alert('notification opened')
+        this.oneSignal.handleNotificationOpened().subscribe((dataObj) => {
+          //alert('notification opened')
+          let data = dataObj.notification.payload.additionalData;
+          let type = data.type;
+
+          if(type === 'propertyChat') {
+            let id = data.propertyID;
+            let to = data.userID;
+            let from = data.sendTo;
+            let propertyName = data.propertyName;
+
+            this.router.navigate(['messages'], {
+              queryParams: { propertyID: id, userID: to, sendTo: from, propertyName: propertyName },
+            });
+          }
         });
         
         this.oneSignal.endInit();
