@@ -25,8 +25,9 @@ export class LoginService {
           userID,
           name,
           surname,
-          chatId,
-          role: 'owner'
+          playerID: chatId,
+          role: 'owner',
+          email
         });
       });
   }

@@ -49,26 +49,25 @@ export class RegisterPage implements OnInit {
 
 		this.oneSignal.getIds().then(id => {
 			chatId = id.userId;
-		});
 
+      const { name, surname, email, password } = this.registerForm.value;
 
-    const { name, surname, email, password } = this.registerForm.value;
+      this.loginService
+        .register(email, password, name, surname, chatId )
+        .then(() => {
+          this.isLoading = false;
+          this.router.navigate(['/navigation'], {
 
-    this.loginService
-      .register(email, password, name, surname, chatId )
-      .then(() => {
-        this.isLoading = false;
-        this.router.navigate(['/navigation'], {
-
-          queryParams: { status: 'success' },
+            queryParams: { status: 'success' },
+          });
+        })
+        .catch((error) => {
+          this.isLoading = false;
+          let code = error.code;
+          let errorMessage = error.message;
+          this.presentAlert(errorMessage);
         });
-      })
-      .catch((error) => {
-        this.isLoading = false;
-        let code = error.code;
-        let errorMessage = error.message;
-        this.presentAlert(errorMessage);
-      });
+		});
   }
 
   async presentAlert(msg) {
