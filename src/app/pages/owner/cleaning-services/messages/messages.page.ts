@@ -27,7 +27,7 @@ export class MessagesPage implements OnInit {
     private oneSignal: OneSignal,
     private calendar: Calendar,
     private firestore: AngularFirestore
-  ) {}
+  ) { }
 
   ngOnInit() {
 
@@ -39,30 +39,30 @@ export class MessagesPage implements OnInit {
       this.sendTo = param.sendTo;
 
       this.cleaningService.getChats(this.userID).subscribe((response) => {
-      this.chats = response.map((chats) => {
-        return {
-          id: chats.payload.doc.id,
-          ...(chats.payload.doc.data() as Object),
-        };
-      });
-      console.log(this.chats);
-      
-      this.chats = this.chats.filter((chat) => {
-        return (
-          (chat.from === this.userID && chat.to === this.sendTo) ||
-          (chat.from === this.sendTo && chat.to === this.userID)
-        )
-      });
+        this.chats = response.map((chats) => {
+          return {
+            id: chats.payload.doc.id,
+            ...(chats.payload.doc.data() as Object),
+          };
+        });
+        console.log(this.chats);
 
-      const temp_chats = this.chats
-        .filter((chats) => chats.id === this.cleaningID)
-        .sort((a, b) => a.date - b.date);
-      this.chats = temp_chats;
-      console.log(this.chats);
-    });
+        this.chats = this.chats.filter((chat) => {
+          return (
+            (chat.from === this.userID && chat.to === this.sendTo) ||
+            (chat.from === this.sendTo && chat.to === this.userID)
+          )
+        });
+
+        const temp_chats = this.chats
+          .filter((chats) => chats.id === this.cleaningID)
+          .sort((a, b) => a.date - b.date);
+        this.chats = temp_chats;
+        console.log(this.chats);
+      });
     });
 
-    
+
   }
 
   sendMessage(chatObj) {
@@ -70,7 +70,7 @@ export class MessagesPage implements OnInit {
       const date = new Date();
       const time = date.getHours() + ':' + date.getMinutes();
       const chat = {
-         ...chatObj,
+        ...chatObj,
         id: this.cleaningID,
         from: this.userID,
         to: this.sendTo,
@@ -93,34 +93,34 @@ export class MessagesPage implements OnInit {
   addEvent(chat) {
     console.log(chat);
     let dt = chat.requestDate;
-    let dd = dt.slice(0,2);
-    let mm = dt.slice(3,5);
-    let yyyy = dt.slice(6,10);
+    let dd = dt.slice(0, 2);
+    let mm = dt.slice(3, 5);
+    let yyyy = dt.slice(6, 10);
     let time = dt.slice(11);
-    let newDate = yyyy + "/" + mm + "/" + dd +" " + time;
+    let newDate = yyyy + "/" + mm + "/" + dd + " " + time;
     let startdate = new Date(newDate);
     let newDateEnd = new Date(newDate);
     let enddate = new Date(newDateEnd.setMinutes(newDateEnd.getMinutes() + 30));
 
-    let options = { 
-      calendername: "Cleaning Request" + chat.serviceRequest.address, 
-      url: '', 
-      firstReminderMinute: 30 
+    let options = {
+      calendername: "Cleaning Request" + chat.serviceRequest.address,
+      url: '',
+      firstReminderMinute: 30
     };
 
     this.calendar
-      .createEventInteractivelyWithOptions('Cleaning Request', chat.serviceRequest.address, '',startdate, enddate, options)
-      .then(()=>{
+      .createEventInteractivelyWithOptions('Cleaning Request', chat.serviceRequest.address, '', startdate, enddate, options)
+      .then(() => {
         this.text = "Cleaning Request Accepted for: " + dt;
         this.sendMessage(chat);
       })
   }
 
-  deleteEvent(){
+  deleteEvent() {
     let startdate = new Date()
     let enddate = new Date()
     let options = { calendername: "MyCalendar", url: 'http://ionicacademy.com', firstReminderMinute: 15 };
-    this.calendar.deleteEvent('new event', 'munster', 'notes',startdate, enddate).then(()=>{
+    this.calendar.deleteEvent('new event', 'munster', 'notes', startdate, enddate).then(() => {
       alert("event deleted");
     })
   }
@@ -135,7 +135,7 @@ export class MessagesPage implements OnInit {
     let id;
     let userData;
     let temp = [];
-    
+
     this.getUser(this.sendTo).subscribe((user) => {
       id = user.payload.id;
       userData = user.payload.data();
@@ -176,6 +176,8 @@ export class MessagesPage implements OnInit {
           //alert(JSON.stringify(error));
         });
     });
+
+
   }
 
 }
