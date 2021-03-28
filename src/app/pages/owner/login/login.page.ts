@@ -90,17 +90,19 @@ export class LoginPage implements OnInit {
         this.oneSignal.handleNotificationOpened().subscribe((dataObj) => {
           //alert('notification opened')
           let data = dataObj.notification.payload.additionalData;
-          let type = data.type;
+          let type = data.requestType;
 
           if(type === 'propertyChat') {
             let id = data.propertyID;
             let to = data.userID;
             let from = data.sendTo;
-            let propertyName = data.propertyName;
+            //let propertyName = data.propertyName;
 
-            this.router.navigate(['messages'], {
-              queryParams: { propertyID: id, userID: to, sendTo: from, propertyName: propertyName },
-            });
+            // this.router.navigate(['messages'], {
+            //   queryParams: { propertyID: id, userID: to, sendTo: from},
+            // });
+
+            this.router.navigate(['property-chats'])
           }
         });
         
