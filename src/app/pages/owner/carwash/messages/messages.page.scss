@@ -1,0 +1,50 @@
+$box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+0 2px 2px 0 rgba(0, 0, 0, 0.14),
+0 1px 5px 0 rgba(0, 0, 0, 0.12);
+textarea {
+    margin: 0 10px;
+    padding: 10px;
+    width: 80%;
+    height: 40px;
+    border: 0;
+    border-radius: 17px;
+}
+
+.item-background-color {
+    --ion-item-background: #f4f5f8;
+}
+
+.you {
+    padding: 10px;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 17px 0 17px 17px;
+    box-shadow: $box-shadow;
+}
+
+.receiver {
+    padding: 10px;
+    /*background-color: hsl(180, 100%, 45%);*/
+    background-color: hsl(217, 59%, 50%);
+    border-radius: 0 17px 17px;
+    box-shadow: $box-shadow;
+}
+
+.receiver p {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: hsl(0, 0%, 100%);
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.you p {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.user-icon {
+    font-size: 40px;
+    color: #ccc;
+}
