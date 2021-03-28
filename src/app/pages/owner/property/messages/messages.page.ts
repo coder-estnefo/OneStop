@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from 'src/app/services/property/property.service';
 import { Calendar } from '@ionic-native/calendar/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-messages',
@@ -10,6 +11,10 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
   styleUrls: ['./messages.page.scss'],
 })
 export class MessagesPage implements OnInit {
+
+  app_id = '7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3';
+  messageId = '';
+
   userID;
   propID;
   sendTo;
@@ -20,7 +25,8 @@ export class MessagesPage implements OnInit {
     private route: ActivatedRoute,
     private propertyService: PropertyService,
     private oneSignal: OneSignal,
-    private calendar: Calendar
+    private calendar: Calendar,
+    private firestore: AngularFirestore
   ) {}
 
   ngOnInit() {
@@ -69,10 +75,12 @@ export class MessagesPage implements OnInit {
         message: this.text,
         time: time,
         date: date,
+        requestType: "property",
       };
 
       this.propertyService.startChat(chat).then(() => {
-        this.text = '';
+        this.sendNotification();
+        //this.text = '';
       });
     }
   }
@@ -112,5 +120,60 @@ export class MessagesPage implements OnInit {
     this.calendar.deleteEvent('new event', 'munster', 'notes',startdate, enddate).then(()=>{
       alert("event deleted");
     })
+  }
+
+  getUser(userID) {
+    return this.firestore.collection("Users")
+      .doc(userID)
+      .snapshotChanges();
+  }
+
+  sendNotification() {
+    let id;
+    let userData;
+    let temp = [];
+    
+    this.getUser(this.sendTo).subscribe((user) => {
+      id = user.payload.id;
+      userData = user.payload.data();
+      temp.push(userData);
+
+      temp.forEach((a) => {
+        console.log(a);
+        this.messageId = a.chat_id;
+      });
+
+      console.log(this.messageId);
+
+      let notificationObj = {
+        contents: {
+          en: this.text,
+        },
+        app_id: this.app_id,
+        external_user_id: this.userID,
+        include_player_ids: [this.messageId],
+        data: {
+          userID: this.userID,
+          propertyID: this.propID,
+          sendTo: this.sendTo,
+          //propertyName: this.propertyName,
+          type: 'propertyChat'
+        }
+      };
+
+      this.oneSignal
+        .postNotification(notificationObj)
+        .then((success) => {
+          // handle received here how you wish.
+          //alert('message from ' + this.userId + ' to ' + this.user_id);
+          // alert(JSON.stringify(success));
+          //alert('message send');
+          this.text = "";
+        })
+        .catch((error) => {
+          //alert(error.message);
+          //alert(JSON.stringify(error));
+        });
+    });
   }
 }
