@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class DashboardPage implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,12 @@ export class DashboardPage implements OnInit {
 
   toBusiness() {
     this.router.navigate(['view-business'])
+  }
+
+  logout() {
+    this.loginService.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
 }
