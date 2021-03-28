@@ -137,4 +137,91 @@ export class CarWashService {
         return this.storage.refFromURL(img).delete();
       });
   }
+
+
+  // getChats(userID) {
+  //   return this.firestore
+  //     .collection('chats')
+  //     .doc(userID)
+  //     .collection('messages', ref => ref.where('requestType','==','cleaning'))
+  //     .snapshotChanges();
+  // }
+
+  setChatID(uid1, uid2) {
+    if (uid1 < uid2) {
+      return uid1 + uid2;
+    } else {
+      return uid2 + uid1;
+    }
+  }
+
+  startChat(chat) {
+    const { 
+      id, 
+      message, 
+      from, 
+      to, 
+      time, 
+      date, 
+      CarWashName, 
+      requestDate, 
+      requestType, 
+      serviceRequest 
+    } = chat;
+    const chatID = this.setChatID(from, to) + id;
+    return this.firestore
+      .collection('chats')
+      .doc(from)
+      .collection('messages')
+      .add({
+        id,
+        message,
+        from,
+        to,
+        time,
+        date,
+        chatID,
+        CarWashName,
+        requestDate,
+        requestType,
+        serviceRequest
+      })
+      .then(() => {
+        return this.firestore
+          .collection('chats')
+          .doc(to)
+          .collection('messages')
+          .add({
+            id,
+            message,
+            from,
+            to,
+            time,
+            date,
+            chatID,
+            CarWashName,
+            requestDate,
+            requestType,
+            serviceRequest
+          });
+      });
+  }
+
+
+  // getChats(userID) {
+  //   return this.firestore
+  //     .collection('chats')
+  //     .doc(userID)
+  //     .collection('messages')
+  //     .snapshotChanges();
+  // }
+
+  getChats(userID) {
+    return this.firestore
+      .collection('chats')
+      .doc(userID)
+      .collection('messages', ref => ref.where('requestType','==','carWash'))
+      .snapshotChanges();
+  }
+
 }

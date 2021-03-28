@@ -68,7 +68,7 @@
         <ion-row>
 
             <ion-col>
-                <ion-card>
+                <ion-card routerLink="/carWash-chats">
                     <ion-item>
                         <ion-card-title>Chat</ion-card-title>
                         <ion-icon color="primary" slot="end" name="chatbubbles-outline"></ion-icon>
@@ -81,7 +81,7 @@
                                     <ion-card>
 
                                         <ion-item>
-                                            <ion-label class="ion-left-padding">4</ion-label>
+                                            <ion-label class="ion-left-padding">{{carWashCount}}</ion-label>
                                             <ion-icon color="primary" name="mail-unread-outline"></ion-icon>
                                         </ion-item>
 
@@ -92,7 +92,7 @@
 
                                     <ion-card>
                                         <ion-item>
-                                            <ion-label class="ion-left-padding">{{3}}</ion-label>
+                                            <ion-label class="ion-left-padding">{{carWashCount}}</ion-label>
                                             <ion-icon color="primary" name="mail-open-outline"></ion-icon>
                                         </ion-item>
 

@@ -181,7 +181,7 @@ export class PropertyService {
 
   //Chat
   startChat(chat) {
-    const { id, message, from, to, time, date } = chat;
+    const { id, message, from, to, time, date ,property} = chat;
     const chatID = this.setChatID(from, to) + id;
     return this.firestore
       .collection('chats')
@@ -195,6 +195,7 @@ export class PropertyService {
         time,
         date,
         chatID,
+        property
       })
       .then(() => {
         return this.firestore
@@ -209,16 +210,25 @@ export class PropertyService {
             time,
             date,
             chatID,
+            property
           });
       });
   }
 
   //get chats
+  // getChats(userID) {
+  //   return this.firestore
+  //     .collection('chats')
+  //     .doc(userID)
+  //     .collection('messages')
+  //     .snapshotChanges();
+  // }
+
   getChats(userID) {
     return this.firestore
       .collection('chats')
       .doc(userID)
-      .collection('messages')
+      .collection('messages', ref => ref.where('requestType','==','property'))
       .snapshotChanges();
   }
 

@@ -69,6 +69,7 @@ export class MessagesPage implements OnInit {
         message: this.text,
         time: time,
         date: date,
+        requestType: 'property'
       };
 
       this.propertyService.startChat(chat).then(() => {

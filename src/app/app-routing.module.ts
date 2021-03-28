@@ -192,6 +192,16 @@ const routes: Routes = [
     path: 'cleaning-messages',
     loadChildren: () => import('./pages/owner/cleaning-services/messages/messages.module').then( m => m.MessagesPageModule)
   },
+  {
+    path: 'carWash-chats',
+    loadChildren: () => import('./pages/owner/carwash/chats/chats.module').then( m => m.ChatsPageModule)
+  },
+  {
+    path: 'carWash-messages',
+    loadChildren: () => import('./pages/owner/carwash/messages/messages.module').then( m => m.MessagesPageModule)
+  },
+
+
 
 
   /* {
