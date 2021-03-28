@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Calendar } from '@ionic-native/calendar/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
@@ -11,6 +12,9 @@ import { CleaningService } from 'src/app/services/cleaning/cleaning.service';
 })
 export class MessagesPage implements OnInit {
 
+  app_id = '7d9fb1a3-b3d6-4705-99e4-d0f04e1160b3';
+  messageId = '';
+
   userID;
   cleaningID;
   sendTo;
@@ -21,7 +25,8 @@ export class MessagesPage implements OnInit {
     private route: ActivatedRoute,
     private cleaningService: CleaningService,
     private oneSignal: OneSignal,
-    private calendar: Calendar
+    private calendar: Calendar,
+    private firestore: AngularFirestore
   ) {}
 
   ngOnInit() {
@@ -60,22 +65,26 @@ export class MessagesPage implements OnInit {
     
   }
 
-  sendMessage() {
+  sendMessage(chatObj) {
     if (this.text) {
       const date = new Date();
       const time = date.getHours() + ':' + date.getMinutes();
       const chat = {
+         ...chatObj,
         id: this.cleaningID,
         from: this.userID,
         to: this.sendTo,
         message: this.text,
         time: time,
         date: date,
-        requestType: 'cleaning'
+        requestType: 'cleaning',
       };
 
+      console.log(chat)
+
       this.cleaningService.startChat(chat).then(() => {
-        this.text = '';
+        this.sendNotification();
+        //this.text = '';
       });
     }
   }
@@ -83,10 +92,16 @@ export class MessagesPage implements OnInit {
 
   addEvent(chat) {
     console.log(chat);
-    //let startdate = new Date(chat.appointmentDate);
-    //let enddate = startdate.setMinutes(startdate.getMinutes() + 30);
-    let startdate = new Date();
-    let enddate = new Date();
+    let dt = chat.requestDate;
+    let dd = dt.slice(0,2);
+    let mm = dt.slice(3,5);
+    let yyyy = dt.slice(6,10);
+    let time = dt.slice(11);
+    let newDate = yyyy + "/" + mm + "/" + dd +" " + time;
+    let startdate = new Date(newDate);
+    let newDateEnd = new Date(newDate);
+    let enddate = new Date(newDateEnd.setMinutes(newDateEnd.getMinutes() + 30));
+
     let options = { 
       calendername: "Cleaning Request" + chat.serviceRequest.address, 
       url: '', 
@@ -94,9 +109,10 @@ export class MessagesPage implements OnInit {
     };
 
     this.calendar
-      .createEventInteractivelyWithOptions('new event', chat.propertyName, 'notes',startdate, enddate, options)
+      .createEventInteractivelyWithOptions('Cleaning Request', chat.serviceRequest.address, '',startdate, enddate, options)
       .then(()=>{
-        //alert("Event is set");
+        this.text = "Cleaning Request Accepted for: " + dt;
+        this.sendMessage(chat);
       })
   }
 
@@ -107,6 +123,59 @@ export class MessagesPage implements OnInit {
     this.calendar.deleteEvent('new event', 'munster', 'notes',startdate, enddate).then(()=>{
       alert("event deleted");
     })
+  }
+
+  getUser(userID) {
+    return this.firestore.collection("Users")
+      .doc(userID)
+      .snapshotChanges();
+  }
+
+  sendNotification() {
+    let id;
+    let userData;
+    let temp = [];
+    
+    this.getUser(this.sendTo).subscribe((user) => {
+      id = user.payload.id;
+      userData = user.payload.data();
+      temp.push(userData);
+
+      temp.forEach((a) => {
+        console.log(a);
+        this.messageId = a.chat_id;
+      });
+
+      console.log(this.messageId);
+
+      let notificationObj = {
+        contents: {
+          en: this.text,
+        },
+        app_id: this.app_id,
+        external_user_id: this.userID,
+        include_player_ids: [this.messageId],
+        data: {
+          userID: this.userID,
+          sendTo: this.sendTo,
+          type: 'cleaningyChat'
+        }
+      };
+
+      this.oneSignal
+        .postNotification(notificationObj)
+        .then((success) => {
+          // handle received here how you wish.
+          //alert('message from ' + this.userId + ' to ' + this.user_id);
+          // alert(JSON.stringify(success));
+          //alert('message send');
+          this.text = "";
+        })
+        .catch((error) => {
+          //alert(error.message);
+          //alert(JSON.stringify(error));
+        });
+    });
   }
 
 }
