@@ -181,7 +181,7 @@ export class PropertyService {
 
   //Chat
   startChat(chat) {
-    const { id, message, from, to, time, date ,property} = chat;
+    const { id, message, from, to, time, date ,propertyName, requestType} = chat;
     const chatID = this.setChatID(from, to) + id;
     return this.firestore
       .collection('chats')
@@ -195,7 +195,8 @@ export class PropertyService {
         time,
         date,
         chatID,
-        property
+        propertyName,
+        requestType,
       })
       .then(() => {
         return this.firestore
@@ -210,7 +211,8 @@ export class PropertyService {
             time,
             date,
             chatID,
-            property
+            propertyName,
+            requestType,
           });
       });
   }

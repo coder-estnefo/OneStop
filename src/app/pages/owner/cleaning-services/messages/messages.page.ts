@@ -83,7 +83,7 @@ export class MessagesPage implements OnInit {
       console.log(chat)
 
       this.cleaningService.startChat(chat).then(() => {
-        this.sendNotification();
+        //this.sendNotification();
         //this.text = '';
       });
     }

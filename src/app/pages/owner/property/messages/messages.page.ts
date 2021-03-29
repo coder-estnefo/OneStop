@@ -64,11 +64,12 @@ export class MessagesPage implements OnInit {
     
   }
 
-  sendMessage() {
+  sendMessage(chatObj) {
     if (this.text) {
       const date = new Date();
       const time = date.getHours() + ':' + date.getMinutes();
       const chat = {
+        ...chatObj,
         id: this.propID,
         from: this.userID,
         to: this.sendTo,
@@ -79,7 +80,7 @@ export class MessagesPage implements OnInit {
       };
 
       this.propertyService.startChat(chat).then(() => {
-        this.sendNotification();
+        //this.sendNotification();
         //this.text = '';
       });
     }
@@ -109,8 +110,9 @@ export class MessagesPage implements OnInit {
       .then(()=>{
         alert("Event is set");
         this.text = "Appointment Date Accepted for: " + dt;
-        this.sendMessage();
+        this.sendMessage(chat);
       })
+
   }
 
   deleteEvent(){
